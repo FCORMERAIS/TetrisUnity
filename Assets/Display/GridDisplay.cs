@@ -13,6 +13,7 @@ public class GridDisplay : MonoBehaviour
 
     // Cette fonction se lance au lancement du jeu, avant le premier affichage.
     public static void Initialize(){
+        
         // TODO : Complétez cette fonction de manière à appeler le code qui initialise votre jeu.
         // TODO : Appelez SetTickFunction en lui passant en argument une fonction ne prenant pas d'argument et renvoyant Void.
         //        Cette fonction sera exécutée à chaque tick du jeu, c'est à dire, initialement, toutes les secondes.
@@ -33,37 +34,6 @@ public class GridDisplay : MonoBehaviour
         _grid.Tick = function;
     }
 
-    // Paramètre la fonction devant être appelée lorsqu'on appuie sur la barre d'espace 
-    // pour faire tourner la pièce dans le sens horaire.
-    // Cette fonction peut être une méthode d'une autre classe
-    // et doit renvoyer void, et ne prendre aucun argument.
-    public static void SetRotateFunction(RotateFunction function){
-        _grid.Rotate = function;
-    }
-
-    // Paramètre la fonction devant être appelée lorsqu'on appuie sur la flèche de gauche 
-    // pour bouger la pièce vers la gauche.
-    // Cette fonction peut être une méthode d'une autre classe
-    // et doit renvoyer void, et ne prendre aucun argument.
-    public static void SetMoveLeftFunction(MoveFunction function){
-        _grid.MoveLeft = function;
-    }
-
-    // Paramètre la fonction devant être appelée lorsqu'on appuie sur la flèche de droite 
-    // pour bouger la pièce vers la droite.
-    // Cette fonction peut être une méthode d'une autre classe
-    // et doit renvoyer void, et ne prendre aucun argument.
-    public static void SetMoveRightFunction(MoveFunction function){
-        _grid.MoveRight = function;
-    }
-
-    // Paramètre la fonction devant être appelée lorsqu'on appuie sur la barre d'espace
-    // pour faire descendre la pièce tout en bas.
-    // Cette fonction peut être une méthode d'une autre classe
-    // et doit renvoyer void, et ne prendre aucun argument.
-    public static void SetRushFunction(RushFunction function){
-        _grid.Rush = function;
-    }
 
     // Modifie l'intervale de rendu du jeu. A modifier pour modifier la difficulté en cours de partie.
     public static void SetTickTime(float seconds){

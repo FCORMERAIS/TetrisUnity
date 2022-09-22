@@ -6,7 +6,7 @@ public class GridDisplay : MonoBehaviour
 {
 
     // Hauteur de la grille en nombre de cases
-    public int height = 22;
+    public int height = 20;
 
     // Largeur de la grille en nombre de cases
     public int width = 10;

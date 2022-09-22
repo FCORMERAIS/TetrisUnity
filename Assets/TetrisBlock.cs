@@ -15,11 +15,11 @@ public class TetrisBlock : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            transform.position += new Vector3(-1.92,0,0);
+            transform.position += new Vector3(-1.92f,0,0);
         }        
         else if(Input.GetKeyDown(KeyCode.RightArrow))
         {
-            transform.position += new Vector3(1.92,0,0);
+            transform.position += new Vector3(1.92f,0,0);
         }
     }
 }

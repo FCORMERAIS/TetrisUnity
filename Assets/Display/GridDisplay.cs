@@ -1,106 +1,123 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class GridDisplay : MonoBehaviour
+public delegate void TickFunction ();
+public delegate void RotateFunction ();
+
+public delegate void MoveFunction ();
+
+public delegate void RushFunction ();
+
+public class _GridDisplay : MonoBehaviour
 {
-
-    // Hauteur de la grille en nombre de cases
-    public int height = 20;
-
-    // Largeur de la grille en nombre de cases
+    List<_Square> squares = new List<_Square>();
     public int width = 10;
+    public int height = 22;
 
-    // Cette fonction se lance au lancement du jeu, avant le premier affichage.
-    public static void Initialize(){
-        // TODO : Complétez cette fonction de manière à appeler le code qui initialise votre jeu.
-        // TODO : Appelez SetTickFunction en lui passant en argument une fonction ne prenant pas d'argument et renvoyant Void.
-        //        Cette fonction sera exécutée à chaque tick du jeu, c'est à dire, initialement, toutes les secondes.
-        //        Vous pouvez utiliser toutes les méthodes statiques ci-dessous pour mettre à jour l'état du jeu.
-        // TODO : Appelez SetMoveLeftFunction, SetMoveRightFunction, SetRotateFunction, SetRushFunction pour enregistrer 
-        //        quelle fonction sera appelée lorsqu'on appuie sur les flèches directionnelles gauche, droite, la barre d'espace
-        //        et la flèche du bas du clavier.
-        //
-        // /!\ Ceci est la seule fonction du fichier que vous avez besoin de compléter, le reste se trouvant dans vos propres classes!
-                  
-    }
+    public float squareSize = 0.4f;
 
-    // Paramètre la fonction devant être appelée à chaque tick. 
-    // C'est ici que le gros de la logique temporelle de votre jeu aura lieu!
-    // Cette fonction peut être une méthode d'une autre classe
-    // et doit renvoyer void, et ne prendre aucun argument.
-    public static void SetTickFunction(TickFunction function){
-        _grid.Tick = function;
-    }
+    public float tick = 1.0f;
 
-    // Paramètre la fonction devant être appelée lorsqu'on appuie sur la barre d'espace 
-    // pour faire tourner la pièce dans le sens horaire.
-    // Cette fonction peut être une méthode d'une autre classe
-    // et doit renvoyer void, et ne prendre aucun argument.
-    public static void SetRotateFunction(RotateFunction function){
-        _grid.Rotate = function;
-    }
+    public TickFunction Tick = null;
+    public RotateFunction Rotate = null;
+    public MoveFunction MoveLeft  = null;
+    public MoveFunction MoveRight  = null;
 
-    // Paramètre la fonction devant être appelée lorsqu'on appuie sur la flèche de gauche 
-    // pour bouger la pièce vers la gauche.
-    // Cette fonction peut être une méthode d'une autre classe
-    // et doit renvoyer void, et ne prendre aucun argument.
-    public static void SetMoveLeftFunction(MoveFunction function){
-        _grid.MoveLeft = function;
-    }
-
-    // Paramètre la fonction devant être appelée lorsqu'on appuie sur la flèche de droite 
-    // pour bouger la pièce vers la droite.
-    // Cette fonction peut être une méthode d'une autre classe
-    // et doit renvoyer void, et ne prendre aucun argument.
-    public static void SetMoveRightFunction(MoveFunction function){
-        _grid.MoveRight = function;
-    }
-
-    // Paramètre la fonction devant être appelée lorsqu'on appuie sur la barre d'espace
-    // pour faire descendre la pièce tout en bas.
-    // Cette fonction peut être une méthode d'une autre classe
-    // et doit renvoyer void, et ne prendre aucun argument.
-    public static void SetRushFunction(RushFunction function){
-        _grid.Rush = function;
-    }
-
-    // Modifie l'intervale de rendu du jeu. A modifier pour modifier la difficulté en cours de partie.
-    public static void SetTickTime(float seconds){
-        _grid.tick = seconds;
-    }
-
-    // Modifie toutes les couleurs de chaque case de la grille.
-    // Cette fonction doit prendre en argument un tableau de LIGNES, de haut vers le bas, contenant 
-    // des couleurs de case allant de gauche vers la droite.
-    // Vous appellerez a priori cette fonction une fois par TickFunction, une fois le nouvel état de la grille
-    // calculé.
-    public static void SetColors(List<List<SquareColor>> colors){
-        _grid.SetColors(colors);
-    }
-
-    // Modifie visuellement le score de l'utilisateur en bas à droite.
-    public static void SetScore(int score){
-        _grid.SetScore(score);
-    }
-    // Déclenche visuellement le GameOver et arrête le jeu.
-    public static void TriggerGameOver(){
-        _grid.TriggerGameOver();
-    }
+    public RushFunction Rush = null;
 
 
-/// Les lignes au delà de celle-ci ne vous concernent pas.
+    public GameObject gameOver = null;
+    public TextMeshProUGUI score = null;
 
-    private static _GridDisplay _grid = null;
-    void Awake()
+    private Coroutine tickCoroutine = null;
+
+    private const float cornerTop = 4.15f;
+    private const float cornerLeft = -2.23f;
+
+    public GameObject squarePrefab = null;
+    // Start is called before the first frame update
+    void Start()
     {
-        _grid = GameObject.FindObjectOfType<_GridDisplay>();
-        _grid.height = height;
-        _grid.width = width;
+        Create();
     }
 
-    void Start(){
-        Initialize();
+    // Update is called once per frame
+    void Update()
+    {
+        this.tickCoroutine = StartCoroutine(LaunchTicks());
     }
-    
+
+    void Create(){
+        GameObject parent = new GameObject();
+        parent.name = "Grid";
+        for(int y = 0; y < this.height; y++){
+            for(int x = 0; x < this.width; x++){
+                GameObject go = GameObject.Instantiate(squarePrefab);
+                go.transform.position = new Vector3(cornerLeft + x*squareSize,cornerTop -y*squareSize,0 );
+                go.transform.localScale = new Vector3(squareSize,squareSize,1);
+                go.name= $"Cell-{x}-{y}";
+                go.transform.SetParent(parent.transform);
+                squares.Add(go.GetComponent<_Square>());
+            }
+        }
+    }
+
+    public void SetScore(int score){
+        if(this.score){
+            this.score.SetText($"{score}");
+        }
+    }
+
+    public void TriggerGameOver(){
+        this.gameOver.SetActive(true);
+        this.StopCoroutine(this.tickCoroutine);
+    }
+
+    public void SetColors(List<List<SquareColor>> colors){
+        if(colors.Count != this.height){
+            throw new System.FormatException("Provided grid does not have the right number of lines.");
+        }
+        for(int y = 0; y < colors.Count; y++){
+            if(colors[y].Count != this.width){
+                throw new System.FormatException($"Line {y} of provided grid does not have the right number of columns.");
+            }
+            for(int x = 0; x < colors[y].Count; x++){
+                squares[y*this.width + x].color = colors[y][x];
+            }
+        }
+    }
+
+    void OnRotate(){
+        if(this.Rotate != null){
+            this.Rotate();
+        }
+    }
+
+    void OnMoveLeft(){
+        if(this.MoveLeft != null){
+            this.MoveLeft();
+        }
+    }
+
+    void OnMoveRight(){
+        if(this.MoveRight != null){
+            this.MoveRight();
+        }
+    }
+
+    void OnRush(){
+        if(this.MoveRight != null){
+            this.MoveRight();
+        }
+    }
+
+
+    IEnumerator LaunchTicks(){
+        yield return new WaitForSeconds(tick);
+        if(Tick != null){
+            Tick();
+        }
+    }
 }

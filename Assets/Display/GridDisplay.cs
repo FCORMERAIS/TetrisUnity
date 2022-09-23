@@ -7,23 +7,28 @@ public class GridDisplay : MonoBehaviour
 
     // Hauteur de la grille en nombre de cases
     public int height = 22;
-
+    // public static List<List<SquareColor>> Grid;
     // Largeur de la grille en nombre de cases
     public int width = 10;
-
+    // public static List<List<SquareColor>> board;
     // Cette fonction se lance au lancement du jeu, avant le premier affichage.
     public static void Initialize(){
+        
         Debug.Log("uwu");
-        List<List<SquareColor>> board = new List<List<SquareColor>>(); 
         for (int i=0;i<22;i++){
             List<SquareColor> Ligne = new List<SquareColor>();
             for (int j = 0;j<10;j++){
                 SquareColor color = SquareColor.GREEN;
                 Ligne.Add(color);
             }
-            board.Add(Ligne);
+            Game.Grid.Add(Ligne);
         }
-        _grid.SetColors(board);
+        _grid.SetColors(Game.Grid);
+        Board.FloorTouch(Game.Grid);
+        GridDisplay.SetTickFunction(Board.TimeFunc);
+        // SpawnPiece(board);
+        GridDisplay.SetScore(100);
+
         // TODO : Complétez cette fonction de manière à appeler le code qui initialise votre jeu.
         // TODO : Appelez SetTickFunction en lui passant en argument une fonction ne prenant pas d'argument et renvoyant Void.
         //        Cette fonction sera exécutée à chaque tick du jeu, c'est à dire, initialement, toutes les secondes.
@@ -33,9 +38,7 @@ public class GridDisplay : MonoBehaviour
         //        et la flèche du bas du clavier.
         //
         // /!\ Ceci est la seule fonction du fichier que vous avez besoin de compléter, le reste se trouvant dans vos propres classes!
-                  
     }
-
     // Paramètre la fonction devant être appelée à chaque tick. 
     // C'est ici que le gros de la logique temporelle de votre jeu aura lieu!
     // Cette fonction peut être une méthode d'une autre classe
@@ -43,7 +46,37 @@ public class GridDisplay : MonoBehaviour
     public static void SetTickFunction(TickFunction function){
         _grid.Tick = function;
     }
+    // Paramètre la fonction devant être appelée lorsqu'on appuie sur la barre d'espace 
+    // pour faire tourner la pièce dans le sens horaire.
+    // Cette fonction peut être une méthode d'une autre classe
+    // et doit renvoyer void, et ne prendre aucun argument.
+    public static void SetRotateFunction(RotateFunction function){
+        _grid.Rotate = function;
+    }
 
+    // Paramètre la fonction devant être appelée lorsqu'on appuie sur la flèche de gauche 
+    // pour bouger la pièce vers la gauche.
+    // Cette fonction peut être une méthode d'une autre classe
+    // et doit renvoyer void, et ne prendre aucun argument.
+    public static void SetMoveLeftFunction(MoveFunction function){
+        _grid.MoveLeft = function;
+    }
+
+    // Paramètre la fonction devant être appelée lorsqu'on appuie sur la flèche de droite 
+    // pour bouger la pièce vers la droite.
+    // Cette fonction peut être une méthode d'une autre classe
+    // et doit renvoyer void, et ne prendre aucun argument.
+    public static void SetMoveRightFunction(MoveFunction function){
+        _grid.MoveRight = function;
+    }
+
+    // Paramètre la fonction devant être appelée lorsqu'on appuie sur la barre d'espace
+    // pour faire descendre la pièce tout en bas.
+    // Cette fonction peut être une méthode d'une autre classe
+    // et doit renvoyer void, et ne prendre aucun argument.
+    public static void SetRushFunction(RushFunction function){
+        _grid.Rush = function;
+    }
 
     // Modifie l'intervale de rendu du jeu. A modifier pour modifier la difficulté en cours de partie.
     public static void SetTickTime(float seconds){

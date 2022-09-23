@@ -16,21 +16,13 @@ public class Board{
 
 
         }
-    
-
         Board.SpawnPiece(board);
     }
     public static void TimeFunc(){
-        // for (int i=0;i<22;i++){
-        //     for (int j = 0;j<10;j++){
-
-        //     }
-        //     board.Add(Ligne);
-        // }
-        // U.Debug.Log("uwu");
-        
         Game.Grid[2][5] = SquareColor.RED;
         GridDisplay.SetColors(Game.Grid);
+
+
         // for (int i = 0;i<Game.Grid.Count;i++){
         //     for (int j = 0;j<Game.Grid[0].Count;j++){
                 
@@ -42,5 +34,4 @@ public class Board{
         //     GridDisplay.SetTickTime(time-(5%*time));
         // }
     }
-
 }

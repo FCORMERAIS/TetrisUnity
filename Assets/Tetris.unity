@@ -318,7 +318,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   m_SendPointerHoverToParent: 1
+=======
+>>>>>>> 5ba1d01e5b36fbe5acf74b60f14c807211c40fa0
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
@@ -335,7 +338,10 @@ MonoBehaviour:
   m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
+<<<<<<< HEAD
   m_CursorLockBehavior: 0
+=======
+>>>>>>> 5ba1d01e5b36fbe5acf74b60f14c807211c40fa0
 --- !u!1 &445361898
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,8 +442,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 715771f744eac67b7baac067bb750ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   height: 22
   width: 10
+=======
+>>>>>>> 5ba1d01e5b36fbe5acf74b60f14c807211c40fa0
 --- !u!114 &445361903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,7 +507,10 @@ GameObject:
   - component: {fileID: 565005885}
   - component: {fileID: 565005887}
   - component: {fileID: 565005886}
+<<<<<<< HEAD
   - component: {fileID: 565005888}
+=======
+>>>>>>> 5ba1d01e5b36fbe5acf74b60f14c807211c40fa0
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -523,9 +535,15 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
   m_AnchoredPosition: {x: -320, y: -130}
   m_SizeDelta: {x: 200, y: 51.6784}
   m_Pivot: {x: 0.4999999, y: 0.5}
+=======
+  m_AnchoredPosition: {x: 296, y: -221}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+>>>>>>> 5ba1d01e5b36fbe5acf74b60f14c807211c40fa0
 --- !u!114 &565005886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,6 +641,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565005884}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!114 &565005888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,6 +654,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf5fc7dc41fd274facddfa766e6909d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+>>>>>>> 5ba1d01e5b36fbe5acf74b60f14c807211c40fa0
 --- !u!1 &1005985612
 GameObject:
   m_ObjectHideFlags: 0

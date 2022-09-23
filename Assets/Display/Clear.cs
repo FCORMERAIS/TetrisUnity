@@ -59,7 +59,6 @@ public class Clear {
                     }
                 }
             }
-            
-            return score;
+            GridDisplay.SetScore(score);
         }
     }

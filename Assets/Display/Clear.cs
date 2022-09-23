@@ -8,7 +8,7 @@ public class Clear {
             List<List<SquareColor>> board = new List<List<SquareColor>>(); 
             for (int i=0;i<22;i++){
                 List<SquareColor> Ligne = new List<SquareColor>();
-                for (int j = 0;j<10;j++){
+                for (int j = 0;j<10;j++){   
                     Ligne.Add(SquareColor.TRANSPARENT);
                 }
                 board.Add(Ligne);

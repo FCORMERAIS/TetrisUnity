@@ -4,88 +4,74 @@ using System.Collections.Generic;
 using Unity = UnityEngine;
 
 public class Board{
-    public static void SpawnPiece(List<List<SquareColor>> board){
+    public static void SpawnPiece(){
         Random rnd = new Random();
         String[] Shape = {"S","Z","T","O","I","L","J"};
         int random = rnd.Next(0, Shape.Length);
         String takeRnd = Shape[random];
         if (takeRnd == "S")
         {
-            TetrominoS(board);
+            TetrominoS();
         }else if (takeRnd == "Z")
         {
-            TetrominoZ(board);
+            TetrominoZ();
         }else if (takeRnd == "T")
         {
-            TetrominoT(board);
+            TetrominoT();
         }else if (takeRnd == "O")
         {
-            TetrominoO(board);
+            TetrominoO();
         }else if (takeRnd == "I")
         {
-            TetrominoI(board);
+            TetrominoI();
         }else if (takeRnd == "L")
         {
-            TetrominoL(board);
+            TetrominoL();
         }else if (takeRnd == "J")
         {
-            TetrominoJ(board);
+            TetrominoJ();
         }
     }
-    public static void TetrominoJ(List<List<SquareColor>> board) {
-        board[0][5] = SquareColor.GREEN;
-        board[1][5] = SquareColor.GREEN;
-        board[2][5] = SquareColor.GREEN;
-        board[2][4] = SquareColor.GREEN;
-        GridDisplay.SetColors(board);
-        SpawnPiece(board);
+    public static void TetrominoJ() {
+        Game.Grid[0][5] = SquareColor.GREEN;
+        Game.Grid[1][5] = SquareColor.GREEN;
+        Game.Grid[2][5] = SquareColor.GREEN;
+        Game.Grid[2][4] = SquareColor.GREEN;
     }
-    public static void TetrominoL(List<List<SquareColor>> board) {
-        board[0][5] = SquareColor.RED;
-        board[1][5] = SquareColor.RED;
-        board[2][5] = SquareColor.RED;
-        board[2][6] = SquareColor.RED;
-        GridDisplay.SetColors(board);
-        SpawnPiece(board);
+    public static void TetrominoL() {
+        Game.Grid[0][5] = SquareColor.RED;
+        Game.Grid[1][5] = SquareColor.RED;
+        Game.Grid[2][5] = SquareColor.RED;
+        Game.Grid[2][6] = SquareColor.RED;
     }
-    public static void TetrominoO(List<List<SquareColor>> board) {
-        board[0][5] = SquareColor.PURPLE;
-        board[1][5] = SquareColor.PURPLE;
-        board[0][4] = SquareColor.PURPLE;
-        board[1][4] = SquareColor.PURPLE;
-        GridDisplay.SetColors(board);
-        SpawnPiece(board);
+    public static void TetrominoO() {
+        Game.Grid[0][5] = SquareColor.PURPLE;
+        Game.Grid[1][5] = SquareColor.PURPLE;
+        Game.Grid[0][4] = SquareColor.PURPLE;
+        Game.Grid[1][4] = SquareColor.PURPLE;
     }
-    public static void TetrominoI(List<List<SquareColor>> board) {
-        board[0][5] = SquareColor.ORANGE;
-        board[1][5] = SquareColor.ORANGE;
-        board[2][5] = SquareColor.ORANGE;
-        board[3][5] = SquareColor.ORANGE;
-        GridDisplay.SetColors(board);
-        SpawnPiece(board);
+    public static void TetrominoI() {
+        Game.Grid[0][3] = SquareColor.ORANGE;
+        Game.Grid[0][5] = SquareColor.ORANGE;
+        Game.Grid[0][4] = SquareColor.ORANGE;
+        Game.Grid[0][6] = SquareColor.ORANGE;
     }
-    public static void TetrominoT(List<List<SquareColor>> board) {
-        board[0][5] = SquareColor.YELLOW;
-        board[1][6] = SquareColor.YELLOW;
-        board[1][5] = SquareColor.YELLOW;
-        board[1][4] = SquareColor.YELLOW;
-        GridDisplay.SetColors(board);
-        SpawnPiece(board);
+    public static void TetrominoT() {
+        Game.Grid[0][5] = SquareColor.YELLOW;
+        Game.Grid[1][6] = SquareColor.YELLOW;
+        Game.Grid[1][5] = SquareColor.YELLOW;
+        Game.Grid[1][4] = SquareColor.YELLOW;
     }
-    public static void TetrominoS(List<List<SquareColor>> board) {
-        board[0][5] = SquareColor.DEEP_BLUE;
-        board[0][4] = SquareColor.DEEP_BLUE;
-        board[1][5] = SquareColor.DEEP_BLUE;
-        board[1][6] = SquareColor.DEEP_BLUE;
-        GridDisplay.SetColors(board);
-        SpawnPiece(board);
+    public static void TetrominoS() {
+        Game.Grid[0][5] = SquareColor.DEEP_BLUE;
+        Game.Grid[0][4] = SquareColor.DEEP_BLUE;
+        Game.Grid[1][5] = SquareColor.DEEP_BLUE;
+        Game.Grid[1][6] = SquareColor.DEEP_BLUE;
     }
-    public static void TetrominoZ(List<List<SquareColor>> board) {
-        board[0][5] = SquareColor.LIGHT_BLUE;
-        board[0][4] = SquareColor.LIGHT_BLUE;
-        board[1][5] = SquareColor.LIGHT_BLUE;
-        board[1][6] = SquareColor.LIGHT_BLUE;
-        GridDisplay.SetColors(board);
-        SpawnPiece(board);
+    public static void TetrominoZ() {
+        Game.Grid[0][5] = SquareColor.LIGHT_BLUE;
+        Game.Grid[0][4] = SquareColor.LIGHT_BLUE;
+        Game.Grid[1][5] = SquareColor.LIGHT_BLUE;
+        Game.Grid[1][6] = SquareColor.LIGHT_BLUE;
     }
 }

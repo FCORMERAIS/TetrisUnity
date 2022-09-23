@@ -12,20 +12,20 @@ public class GridDisplay : MonoBehaviour
     // Largeur de la grille en nombre de cases
     public int width = 10;
 
+    public static List<List<SquareColor>> Grid;
     // Cette fonction se lance au lancement du jeu, avant le premier affichage.
     public static void Initialize(){
         Debug.Log("uwu");
-        List<List<SquareColor>> board = new List<List<SquareColor>>(); 
         for (int i=0;i<22;i++){
             List<SquareColor> Ligne = new List<SquareColor>();
             for (int j = 0;j<10;j++){
                 SquareColor color = SquareColor.GREEN;
                 Ligne.Add(color);
             }
-            board.Add(Ligne);
+            Game.Grid.Add(Ligne);
         }
-        _grid.SetColors(board);
-        Board.SpawnPiece(board);
+        SetTickFunction(lunchtime);
+        Board.SpawnPiece();
         // TODO : Complétez cette fonction de manière à appeler le code qui initialise votre jeu.
         // TODO : Appelez SetTickFunction en lui passant en argument une fonction ne prenant pas d'argument et renvoyant Void.
         //        Cette fonction sera exécutée à chaque tick du jeu, c'est à dire, initialement, toutes les secondes.
@@ -68,6 +68,10 @@ public class GridDisplay : MonoBehaviour
     // et doit renvoyer void, et ne prendre aucun argument.
     public static void SetMoveRightFunction(MoveFunction function){
         _grid.MoveRight = function;
+    }
+
+    public static void lunchtime() {
+        GridDisplay.SetColors(Game.Grid);
     }
 
     // Paramètre la fonction devant être appelée lorsqu'on appuie sur la barre d'espace

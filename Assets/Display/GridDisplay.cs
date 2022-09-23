@@ -71,6 +71,16 @@ public class GridDisplay : MonoBehaviour
     }
 
     public static void lunchtime() {
+        List<SquareColor> Ligne = new List<SquareColor>();
+        for (int i = 21; i > 0; i--)
+        {
+            Game.Grid[i] = Game.Grid[i-1];
+        }
+        for (int j = 0;j<10;j++){
+            SquareColor color = SquareColor.GREEN;
+            Ligne.Add(color);
+        }
+        Game.Grid[0] = Ligne;
         GridDisplay.SetColors(Game.Grid);
     }
 
@@ -93,6 +103,7 @@ public class GridDisplay : MonoBehaviour
     // Vous appellerez a priori cette fonction une fois par TickFunction, une fois le nouvel état de la grille
     // calculé.
     public static void SetColors(List<List<SquareColor>> colors){
+        
         _grid.SetColors(colors);
     }
 

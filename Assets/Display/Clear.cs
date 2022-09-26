@@ -3,25 +3,28 @@ using System;
 public class Clear {
     
         public static void Clear(){
-
+            // si une forme touche le haut
+            if (isTop == true){
+                board == SquareColor.TRANSPARENT;
+            }
         }
+
+        // Si une ligne est complète
         public static void ClearLine(){
-            for(int i = 0; i < x; i++){
-                for(int j = 0; j < y; j++){
+            for(int i = 0; i < 10; i++){
+                for(int j = 0; j < 22; j++){
                     GridDisplay.SetColor(i, j, SquareColor.TRANSPARENT);
                 }
             }
         }
 
+        // Vérifie si une ligne est complète
         public static void VerifyLineCompleted(){
-            for(int i = 0; i < x; i++){
-                for(int j = 0; j < y; j++){
-                    if(GridDisplay.GetColor(i, j) == SquareColor.TRANSPARENT){
-                        return false;
-                    }
+            if (int i = 0; i < 10; i++){
+                if (GridDisplay.GetColor(i, j) == SquareColor.TRANSPARENT){
+                    ClearLine();
                 }
             }
-            return true;
         }
 
         public static void ShowScore(){

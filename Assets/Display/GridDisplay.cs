@@ -23,6 +23,7 @@ public class GridDisplay : MonoBehaviour
                 Ligne.Add(color);
             }
             Game.Grid.Add(Ligne);
+            Game.MirrorGrid.Add(Ligne);
         }
         _grid.SetColors(Game.Grid);
         Board.FloorTouch();

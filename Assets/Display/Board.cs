@@ -75,24 +75,40 @@ public class Board{
         Game.Grid[1][6] = SquareColor.LIGHT_BLUE;
     }
 
-    public static void FloorTouch(List<List<SquareColor>> board){
-        for (int i = 0;i<board.Count;i++){
 
-
+    public static bool isFloorTouch(){
+        int x;
+        int y;
+        for (int i = 0;i<Game.MirrorGrid.Count;i++){
+            for (int j =0;j<Game.MirrorGrid[0].Count;j++){
+                if (Game.MirrorGrid[i][j]!=SquareColor.TRANSPARENT){
+                    x=j;
+                    y=i;
+                    if(Game.Grid[y-1][x]!= SquareColor.TRANSPARENT){
+                        return true;
+                    }
+                }
+            }
         }
-        Board.SpawnPiece(board);
+        return false;
     }
+
+    public static void FloorTouch(){
+        for (int i = 0;i<Game.MirrorGrid.Count;i++){
+            for (int j =0;j<Game.MirrorGrid[0].Count;j++){
+                if (Game.MirrorGrid[i][j]!=SquareColor.TRANSPARENT){
+                    Game.Grid[i][j]=Game.MirrorGrid[i][j];
+                }
+            }
+        }
+        Board.SpawnPiece();
+    }
+
+
     public static void TimeFunc(){
         Game.Grid[2][5] = SquareColor.RED;
         GridDisplay.SetColors(Game.Grid);
 
-
-        // for (int i = 0;i<Game.Grid.Count;i++){
-        //     for (int j = 0;j<Game.Grid[0].Count;j++){
-                
-
-        //     }
-        // }
 
         // if (game.Score %5==0){
         //     GridDisplay.SetTickTime(time-(5%*time));

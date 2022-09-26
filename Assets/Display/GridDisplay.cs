@@ -25,7 +25,7 @@ public class GridDisplay : MonoBehaviour
             Game.Grid.Add(Ligne);
         }
         _grid.SetColors(Game.Grid);
-        Board.FloorTouch(Game.Grid);
+        Board.FloorTouch();
         GridDisplay.SetTickFunction(Board.TimeFunc);
         // SpawnPiece(board);
         GridDisplay.SetScore(100);

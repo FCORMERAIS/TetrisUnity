@@ -8,7 +8,7 @@ public class Clear {
         public static void ClearLine(){
             for(int i = 0; i < x; i++){
                 for(int j = 0; j < y; j++){
-                    GridDisplay.SetColor(i, j, SquareColor.GREEN);
+                    GridDisplay.SetColor(i, j, SquareColor.TRANSPARENT);
                 }
             }
         }
@@ -16,7 +16,7 @@ public class Clear {
         public static void VerifyLineCompleted(){
             for(int i = 0; i < x; i++){
                 for(int j = 0; j < y; j++){
-                    if(GridDisplay.GetColor(i, j) == SquareColor.GREEN){
+                    if(GridDisplay.GetColor(i, j) == SquareColor.TRANSPARENT){
                         return false;
                     }
                 }

@@ -14,23 +14,20 @@ public class GridDisplay : MonoBehaviour
     // public static List<List<SquareColor>> board;
     // Cette fonction se lance au lancement du jeu, avant le premier affichage.
     public static void Initialize(){
-        
         Debug.Log("uwu");
         for (int i=0;i<22;i++){
             List<SquareColor> Ligne = new List<SquareColor>();
             for (int j = 0;j<10;j++){
-                SquareColor color = SquareColor.GREEN;
+                SquareColor color = SquareColor.TRANSPARENT;
                 Ligne.Add(color);
             }
             Game.Grid.Add(Ligne);
-            Game.MirrorGrid.Add(Ligne);
+            Game.MirrorGrid.Add(new List<SquareColor>(Ligne));
+            Game.ShowTetris.Add(new List<SquareColor>(Ligne));
         }
-        _grid.SetColors(Game.Grid);
-        Board.FloorTouch();
-        GridDisplay.SetTickFunction(Board.TimeFunc);
-        // SpawnPiece(board);
-        GridDisplay.SetScore(100);
         Board.SpawnPiece();
+        SetTickFunction(lunchtime);
+        // GridDisplay.SetScore(100);
 
         // TODO : Complétez cette fonction de manière à appeler le code qui initialise votre jeu.
         // TODO : Appelez SetTickFunction en lui passant en argument une fonction ne prenant pas d'argument et renvoyant Void.
@@ -74,17 +71,36 @@ public class GridDisplay : MonoBehaviour
     }
 
     public static void lunchtime() {
-        List<SquareColor> Ligne = new List<SquareColor>();
-        for (int i = 21; i > 0; i--)
-        {
-            Game.Grid[i] = Game.Grid[i-1];
+        if (!Board.isFloorTouch()) {
+            List<SquareColor> Ligne = new List<SquareColor>();
+            for (int i = 21; i > 0; i--)
+            {
+                Game.MirrorGrid[i] = Game.MirrorGrid[i-1];
+            }
+            for (int j = 0;j<10;j++){
+                SquareColor color = SquareColor.TRANSPARENT;
+                Ligne.Add(color);
+            }
+            Game.MirrorGrid[0] = Ligne;
+            GridToShow();
+            GridDisplay.SetColors(Game.ShowTetris);
+        }else {
+            Board.FloorTouch();
         }
-        for (int j = 0;j<10;j++){
-            SquareColor color = SquareColor.GREEN;
-            Ligne.Add(color);
+    }
+
+    public static void GridToShow() {
+        for (int i=0;i<22;i++){
+            for (int j = 0;j<10;j++){
+                if (Game.Grid[i][j] != SquareColor.TRANSPARENT) {
+                    Game.ShowTetris[i][j] = Game.Grid[i][j];
+                }else if (Game.MirrorGrid[i][j] != SquareColor.TRANSPARENT) {
+                    Game.ShowTetris[i][j] = Game.MirrorGrid[i][j];
+                }else {
+                    Game.ShowTetris[i][j] = SquareColor.TRANSPARENT;
+                }
+            }
         }
-        Game.Grid[0] = Ligne;
-        GridDisplay.SetColors(Game.Grid);
     }
 
     // Paramètre la fonction devant être appelée lorsqu'on appuie sur la barre d'espace
@@ -106,7 +122,6 @@ public class GridDisplay : MonoBehaviour
     // Vous appellerez a priori cette fonction une fois par TickFunction, une fois le nouvel état de la grille
     // calculé.
     public static void SetColors(List<List<SquareColor>> colors){
-        
         _grid.SetColors(colors);
     }
 

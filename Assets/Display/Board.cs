@@ -70,9 +70,9 @@ public class Board{
     }
     public static void TetrominoZ() {
         Game.MirrorGrid[0][5] = SquareColor.LIGHT_BLUE;
-        Game.MirrorGrid[0][4] = SquareColor.LIGHT_BLUE;
+        Game.MirrorGrid[0][6] = SquareColor.LIGHT_BLUE;
         Game.MirrorGrid[1][5] = SquareColor.LIGHT_BLUE;
-        Game.MirrorGrid[1][6] = SquareColor.LIGHT_BLUE;
+        Game.MirrorGrid[1][4] = SquareColor.LIGHT_BLUE;
     }
 
 
@@ -84,7 +84,7 @@ public class Board{
                 if (Game.MirrorGrid[i][j]!=SquareColor.TRANSPARENT){
                     x=j;
                     y=i;
-                    if(Game.Grid[y-1][x]!= SquareColor.TRANSPARENT){
+                    if(Game.Grid[y+1][x] != SquareColor.TRANSPARENT || y==20){
                         return true;
                     }
                 }
@@ -107,16 +107,5 @@ public class Board{
             }
         }
         Board.SpawnPiece();
-    }
-
-
-    public static void TimeFunc(){
-        Game.Grid[2][5] = SquareColor.RED;
-        GridDisplay.SetColors(Game.Grid);
-
-
-        // if (game.Score %5==0){
-        //     GridDisplay.SetTickTime(time-(5%*time));
-        // }
     }
 }

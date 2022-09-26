@@ -101,6 +101,11 @@ public class Board{
                 }
             }
         }
+        for (int i = 0;i<Game.MirrorGrid.Count;i++){
+            for (int j =0;j<Game.MirrorGrid[0].Count;j++){
+                Game.MirrorGrid[i][j]=SquareColor.TRANSPARENT;
+            }
+        }
         Board.SpawnPiece();
     }
 

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class GridDisplay : MonoBehaviour
 {
@@ -11,10 +10,9 @@ public class GridDisplay : MonoBehaviour
     // public static List<List<SquareColor>> Grid;
     // Largeur de la grille en nombre de cases
     public int width = 10;
-    // public static List<List<SquareColor>> board;
     // Cette fonction se lance au lancement du jeu, avant le premier affichage.
     public static void Initialize(){
-        Debug.Log("uwu");
+        List<List<SquareColor>> board = new List<List<SquareColor>>(); 
         for (int i=0;i<22;i++){
             List<SquareColor> Ligne = new List<SquareColor>();
             for (int j = 0;j<10;j++){

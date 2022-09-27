@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Display/Board.cs.meta
 <<<<<<< HEAD
 guid: 3e024563e7a77c748892994d91a169d0
 =======
 guid: aa552562798b6a246955d70100663a8b
 >>>>>>> 5ba1d01e5b36fbe5acf74b60f14c807211c40fa0
+=======
+guid: de61e32c3dbc7b3479ff26e85cf5d1a3
+>>>>>>> 6d8bb7203c50c4d06160d80e7d84f6754d7563d4:Assets/Display/Clear.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

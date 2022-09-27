@@ -28,6 +28,7 @@ public class GridDisplay : MonoBehaviour
         GridDisplay.SetMoveLeftFunction(KeyBoard.MoveRight);
         GridDisplay.SetMoveRightFunction(KeyBoard.MoveLeft);
     }
+    
         // TODO : Complétez cette fonction de manière à appeler le code qui initialise votre jeu.
         // TODO : Appelez SetTickFunction en lui passant en argument une fonction ne prenant pas d'argument et renvoyant Void.
         //        Cette fonction sera exécutée à chaque tick du jeu, c'est à dire, initialement, toutes les secondes.
@@ -85,6 +86,8 @@ public class GridDisplay : MonoBehaviour
         }else {
             Board.FloorTouch();
         }
+        GridDisplay.SetScore(Game.score);
+
     }
 
     public static void GridToShow() {

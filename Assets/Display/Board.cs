@@ -85,6 +85,7 @@ public class Board{
                     x=j;
                     y=i;
                     if(Game.Grid[y+1][x] != SquareColor.TRANSPARENT || y==20){
+                        Game.score += 10;
                         return true;
                     }
                 }
@@ -108,4 +109,6 @@ public class Board{
         }
         Board.SpawnPiece();
     }
+
+    
 }

@@ -19,18 +19,19 @@ public class GridDisplay : MonoBehaviour
         for (int i=0;i<22;i++){
             List<SquareColor> Ligne = new List<SquareColor>();
             for (int j = 0;j<10;j++){
-                SquareColor color = SquareColor.GREEN;
+                SquareColor color = SquareColor.TRANSPARENT;
                 Ligne.Add(color);
             }
             Game.Grid.Add(Ligne);
-            Game.MirrorGrid.Add(Ligne);
+            Game.MirrorGrid.Add(new List<SquareColor>(Ligne));
         }
         _grid.SetColors(Game.Grid);
-        Board.FloorTouch();
-        GridDisplay.SetTickFunction(Board.TimeFunc);
-        // SpawnPiece(board);
-        GridDisplay.SetScore(100);
         Board.SpawnPiece();
+        GridDisplay.SetMoveLeftFunction(KeyBoard.MoveRight);
+        GridDisplay.SetMoveRightFunction(KeyBoard.MoveLeft);
+
+        GridDisplay.SetTickFunction(Board.TimeFunc);
+        // GridDisplay.SetScore(100);
 
         // TODO : Complétez cette fonction de manière à appeler le code qui initialise votre jeu.
         // TODO : Appelez SetTickFunction en lui passant en argument une fonction ne prenant pas d'argument et renvoyant Void.

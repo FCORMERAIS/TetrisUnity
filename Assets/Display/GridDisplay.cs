@@ -25,9 +25,9 @@ public class GridDisplay : MonoBehaviour
         }
         Board.SpawnPiece();
         SetTickFunction(lunchtime);
-        }
         GridDisplay.SetMoveLeftFunction(KeyBoard.MoveRight);
         GridDisplay.SetMoveRightFunction(KeyBoard.MoveLeft);
+    }
         // GridDisplay.SetScore(100);
 
         // TODO : Complétez cette fonction de manière à appeler le code qui initialise votre jeu.
@@ -39,7 +39,6 @@ public class GridDisplay : MonoBehaviour
         //        et la flèche du bas du clavier.
         //
         // /!\ Ceci est la seule fonction du fichier que vous avez besoin de compléter, le reste se trouvant dans vos propres classes!
-    }
     // Paramètre la fonction devant être appelée à chaque tick. 
     // C'est ici que le gros de la logique temporelle de votre jeu aura lieu!
     // Cette fonction peut être une méthode d'une autre classe

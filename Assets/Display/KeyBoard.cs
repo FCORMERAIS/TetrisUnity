@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class KeyBoard{
 
@@ -30,5 +31,9 @@ public static class KeyBoard{
                 }
             }
         }
+    }
+
+    public static void Rush() {
+        GridDisplay.SetTickTime(0.03f);
     }
 }

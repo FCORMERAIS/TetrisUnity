@@ -27,6 +27,7 @@ public class GridDisplay : MonoBehaviour
         SetTickFunction(lunchtime);
         GridDisplay.SetMoveLeftFunction(KeyBoard.MoveRight);
         GridDisplay.SetMoveRightFunction(KeyBoard.MoveLeft);
+        GridDisplay.SetRushFunction(KeyBoard.Rush);
     }
         // GridDisplay.SetScore(100);
 

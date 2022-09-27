@@ -25,6 +25,9 @@ public class GridDisplay : MonoBehaviour
         }
         Board.SpawnPiece();
         SetTickFunction(lunchtime);
+        }
+        GridDisplay.SetMoveLeftFunction(KeyBoard.MoveRight);
+        GridDisplay.SetMoveRightFunction(KeyBoard.MoveLeft);
         // GridDisplay.SetScore(100);
 
         // TODO : Complétez cette fonction de manière à appeler le code qui initialise votre jeu.

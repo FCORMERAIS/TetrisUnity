@@ -79,12 +79,16 @@ public class Board{
     public static bool isFloorTouch(){
         int x;
         int y;
-        for (int i = 0;i<Game.MirrorGrid.Count;i++){
+        for (int i = 0;i<Game.MirrorGrid.Count-1;i++){
             for (int j =0;j<Game.MirrorGrid[0].Count;j++){
                 if (Game.MirrorGrid[i][j]!=SquareColor.TRANSPARENT){
                     x=j;
                     y=i;
+<<<<<<< HEAD
                     if(Game.Grid[y+1][x] != SquareColor.TRANSPARENT || y==20){
+=======
+                    if(y+1 == 22||Game.Grid[y+1][x]!= SquareColor.TRANSPARENT){
+>>>>>>> d63209c290196c2e3072bbc489753d25ffd21747
                         return true;
                     }
                 }
@@ -108,4 +112,21 @@ public class Board{
         }
         Board.SpawnPiece();
     }
+<<<<<<< HEAD
+=======
+
+
+    public static void TimeFunc(){
+        if (Board.isFloorTouch()== true){
+            Board.FloorTouch();
+        }
+        GridDisplay.SetColors(Game.Grid);
+
+
+
+        // if (game.Score %5==0){
+        //     GridDisplay.SetTickTime(time-(5%*time));
+        // }
+    }
+>>>>>>> d63209c290196c2e3072bbc489753d25ffd21747
 }

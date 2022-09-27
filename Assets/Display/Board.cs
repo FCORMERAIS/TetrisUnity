@@ -43,7 +43,7 @@ public class Board{
         Game.MirrorGrid[1][4] = SquareColor.RED;
         Game.MirrorGrid[2][4] = SquareColor.RED;
         Game.MirrorGrid[2][5] = SquareColor.RED;
-
+    }
     public static void TetrominoO() {
         Game.MirrorGrid[0][5] = SquareColor.PURPLE;
         Game.MirrorGrid[1][5] = SquareColor.PURPLE;

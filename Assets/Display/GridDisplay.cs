@@ -24,9 +24,11 @@ public class GridDisplay : MonoBehaviour
             Game.ShowTetris.Add(new List<SquareColor>(Ligne));
         }
         Board.SpawnPiece();
+        // Game.Grid[0][0] = SquareColor.RED;
+
         SetTickFunction(lunchtime);
-        GridDisplay.SetMoveLeftFunction(KeyBoard.MoveRight);
-        GridDisplay.SetMoveRightFunction(KeyBoard.MoveLeft);
+        GridDisplay.SetMoveLeftFunction(KeyBoard.MoveLeft);
+        GridDisplay.SetMoveRightFunction(KeyBoard.MoveRight);
     }
         // GridDisplay.SetScore(100);
 
@@ -86,6 +88,11 @@ public class GridDisplay : MonoBehaviour
             GridDisplay.SetColors(Game.ShowTetris);
         }else {
             Board.FloorTouch();
+            // for (int i = 0;i<Game.Grid.Count;i++){
+            //     for (int j=0;j<Game.Grid[0].Count;j++){
+            //         Debug.Log(Game.Grid[i][j]);
+            //     }
+            // }
         }
     }
 

@@ -86,13 +86,11 @@ public class GridDisplay : MonoBehaviour
             Game.MirrorGrid[0] = Ligne;
             GridToShow();
             GridDisplay.SetColors(Game.ShowTetris);
+            if (Board.isFloorTouch()) {
+                Board.FloorTouch();
+            }
         }else {
             Board.FloorTouch();
-            // for (int i = 0;i<Game.Grid.Count;i++){
-            //     for (int j=0;j<Game.Grid[0].Count;j++){
-            //         Debug.Log(Game.Grid[i][j]);
-            //     }
-            // }
         }
     }
 

@@ -12,9 +12,9 @@ public static class KeyBoard{
                 return;
             }
         }
-        for (int i = 0;i<Game.MirrorGrid.Count-1;i++){
+        for (int i = 0;i<Game.MirrorGrid.Count;i++){
             for (int j=9;j>0;j--){
-                if (Game.Grid[i][j-1]!=SquareColor.TRANSPARENT && Game.MirrorGrid[i][j]!=SquareColor.TRANSPARENT ){
+                if (Game.MirrorGrid[i][j-1]!=SquareColor.TRANSPARENT && Game.Grid[i][j]!=SquareColor.TRANSPARENT ){
                     return;
                 }
             }
@@ -27,6 +27,8 @@ public static class KeyBoard{
         }
         GridDisplay.GridToShow();
         GridDisplay.SetColors(Game.ShowTetris);
+
+        
     }
 
     public static void MoveLeft(){
@@ -35,6 +37,13 @@ public static class KeyBoard{
             if (Game.MirrorGrid[i][0]!=SquareColor.TRANSPARENT){
                 return;
             }  
+        }
+        for (int i = 0;i<Game.MirrorGrid.Count;i++){
+            for (int j=0;j<9;j++){
+                if (Game.MirrorGrid[i][j+1]!=SquareColor.TRANSPARENT && Game.Grid[i][j]!=SquareColor.TRANSPARENT ){
+                    return;
+                }
+            }
         }
         for (int i = 0;i<Game.MirrorGrid.Count-1;i++){
             for (int j=0;j<9;j++){

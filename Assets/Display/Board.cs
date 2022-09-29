@@ -87,6 +87,7 @@ public static bool isFloorTouch(){
                     x=j;
                     y=i;
                     if(y==21 ||Game.Grid[y+1][x] != SquareColor.TRANSPARENT ){
+                        Game.score += 10;
                         return true;
                     }
                 }
@@ -111,4 +112,6 @@ public static bool isFloorTouch(){
         Board.SpawnPiece();
         GridDisplay.SetTickTime(1.0f);
     }
+
+    
 }

@@ -90,7 +90,6 @@ public class GridDisplay : MonoBehaviour
             Clear.ClearLine();
         }
         GridDisplay.SetScore(Game.score);
-
     }
 
     public static void GridToShow() {

@@ -31,6 +31,8 @@ public class Board{
         {
             TetrominoJ();
         }
+        GridDisplay.GridToShow();
+        GridDisplay.SetColors(Game.ShowTetris);
     }
     public static void TetrominoJ() {
         Game.MirrorGrid[0][5] = SquareColor.GREEN;

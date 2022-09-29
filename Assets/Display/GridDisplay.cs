@@ -27,8 +27,8 @@ public class GridDisplay : MonoBehaviour
         // Game.Grid[0][0] = SquareColor.RED;
 
         SetTickFunction(lunchtime);
-        GridDisplay.SetMoveLeftFunction(KeyBoard.MoveRight);
-        GridDisplay.SetMoveRightFunction(KeyBoard.MoveLeft);
+        GridDisplay.SetMoveLeftFunction(KeyBoard.MoveLeft);
+        GridDisplay.SetMoveRightFunction(KeyBoard.MoveRight);
         GridDisplay.SetRushFunction(KeyBoard.Rush);
     }
         // GridDisplay.SetScore(100);

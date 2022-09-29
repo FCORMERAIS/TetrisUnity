@@ -110,5 +110,11 @@ public class Board{
         Board.SpawnPiece();
     }
 
+    public static void gameOver(){
+        for (int i = 0 ; i < 22 ; i++){
+            Clear.ClearLine();
+        }
+    }
+
     
 }

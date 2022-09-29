@@ -49,13 +49,9 @@ public class Clear {
     // Vérifie si une ligne est complète
     public static void VerifyLineCompleted(){
         for (int i = 0; i < 22; i++){
-            int count = 0;
-            for (int j = 0; j < 10; j++){
-                if (Game.Grid[i][j] != SquareColor.TRANSPARENT){
-                    count++;
-                }
+            if (!Game.Grid[i].Contains(SquareColor.TRANSPARENT)){
+                ClearLine();
             }
-           
         }
     }
 }

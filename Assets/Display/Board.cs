@@ -114,24 +114,8 @@ public static bool isFloorTouch(){
     }
 
     public static void GameOver(){
-        // Si un bloc arrive à la première ligne
-        for (int i = 0;i<Game.Grid[0].Count;i++){
-            if (Game.Grid[0][i]!=SquareColor.TRANSPARENT){
-                Game.score = 0;
-                for (int j = 0;j<Game.Grid.Count;j++){
-                    for (int k =0;k<Game.Grid[0].Count;k++){
-                        Game.Grid[j][k]=SquareColor.TRANSPARENT;
-                    }
-                }
-                for (int j = 0;j<Game.MirrorGrid.Count;j++){
-                    for (int k =0;k<Game.MirrorGrid[0].Count;k++){
-                        Game.MirrorGrid[j][k]=SquareColor.TRANSPARENT;
-                    }
-                }
-                SpawnPiece();
-                GridDisplay.GridToShow();
-                GridDisplay.SetColors(Game.ShowTetris);
-            }
-        }
+        Game.score = 0;
+        Clear.clearGrid();
+        SpawnPiece();
     }
 }

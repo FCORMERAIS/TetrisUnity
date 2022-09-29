@@ -114,8 +114,13 @@ public static bool isFloorTouch(){
     }
 
     public static void GameOver(){
-        Game.score = 0;
-        Clear.clearGrid();
-        SpawnPiece();
-    }
+        for (int i = 0; i < 10; i++){
+            if (Game.Grid[0][i]!= SquareColor.TRANSPARENT){
+                Game.score = 0;
+                Clear.clearGrid();
+                SpawnPiece();
+            }
+        }
+        
+     }
 }

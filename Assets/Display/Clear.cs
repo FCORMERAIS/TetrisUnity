@@ -20,19 +20,36 @@ public class Clear {
 
     // Si une ligne est complète on la supprime et on descend les lignes au dessus
     public static void ClearLine(){
-       
+        int count = 0;
+        for (int i = 0; i < 22; i++){
+            if (Game.Grid[i].Contains(SquareColor.TRANSPARENT)){
+                count++;
+            }else{
+                Game.Grid.RemoveAt(i);
+                Game.MirrorGrid.RemoveAt(i);
+                Game.ShowTetris.RemoveAt(i);
+                List<SquareColor> Ligne = new List<SquareColor>();
+                for (int j = 0; j < 10; j++){
+                    SquareColor color = SquareColor.TRANSPARENT;
+                    Ligne.Add(color);
+                }
+                Game.Grid.Insert(0, Ligne);
+                Game.MirrorGrid.Insert(0, new List<SquareColor>(Ligne));
+                Game.ShowTetris.Insert(0, new List<SquareColor>(Ligne));
+                Game.score += 100;
+            }
+        }
+        if (count == 22){
+            Game.score += 1000;
+        }
     }
 
     // Vérifie si une ligne est complète
     public static void VerifyLineCompleted(){
         for (int i = 0; i < 22; i++){
-            int count = 0;
-            for (int j = 0; j < 10; j++){
-                if (Game.Grid[i][j] != SquareColor.TRANSPARENT){
-                    count++;
-                }
+            if (!Game.Grid[i].Contains(SquareColor.TRANSPARENT)){
+                ClearLine();
             }
-           
         }
     }
 }

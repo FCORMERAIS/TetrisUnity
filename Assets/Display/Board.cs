@@ -31,6 +31,8 @@ public class Board{
         {
             TetrominoJ();
         }
+        GridDisplay.GridToShow();
+        GridDisplay.SetColors(Game.ShowTetris);
     }
     public static void TetrominoJ() {
         Game.MirrorGrid[0][5] = SquareColor.GREEN;
@@ -76,15 +78,15 @@ public class Board{
     }
 
 
-    public static bool isFloorTouch(){
+public static bool isFloorTouch(){
         int x;
         int y;
-        for (int i = 0;i<Game.MirrorGrid.Count-1;i++){
+        for (int i = 0;i<Game.MirrorGrid.Count;i++){
             for (int j =0;j<Game.MirrorGrid[0].Count;j++){
                 if (Game.MirrorGrid[i][j]!=SquareColor.TRANSPARENT){
                     x=j;
                     y=i;
-                    if(Game.Grid[y+1][x] != SquareColor.TRANSPARENT || y==20){
+                    if(y==21 ||Game.Grid[y+1][x] != SquareColor.TRANSPARENT ){
                         Game.score += 10;
                         return true;
                     }
@@ -108,6 +110,7 @@ public class Board{
             }
         }
         Board.SpawnPiece();
+        GridDisplay.SetTickTime(1.0f);
     }
 
     public static void gameOver(){

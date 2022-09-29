@@ -91,6 +91,7 @@ public class GridDisplay : MonoBehaviour
             }
         }else {
             Board.FloorTouch();
+            Board.GameOver();
         }
         GridDisplay.SetScore(Game.score);
 

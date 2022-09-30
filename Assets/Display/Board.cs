@@ -122,5 +122,11 @@ public static bool isFloorTouch(){
             }
         }
         
-     }
+    }
+
+    public static void bestScore(){
+        String FileToRoad = @"C:\Users\jules\TetrisUnity\Assets\Display\score.txt";
+        IEnumerable<string> line = File.ReadLines(FileToRead);
+        Console.WriteLine(String.Join(Environment.NewLine, line));
+    }
 }

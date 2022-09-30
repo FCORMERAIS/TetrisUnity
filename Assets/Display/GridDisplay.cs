@@ -88,7 +88,7 @@ public class GridDisplay : MonoBehaviour
         if (Board.isFloorTouch()) {
             Board.FloorTouch();
             Clear.ClearLine();
-            Board.GameOver();
+            Board.IsGameOver();
         }
         GridDisplay.SetScore(Game.score);
     }

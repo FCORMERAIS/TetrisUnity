@@ -32,7 +32,11 @@ public class Board{
             TetrominoJ();
         }
         GridDisplay.GridToShow();
-        GridDisplay.SetColors(Game.ShowTetris);
+        if (testSpawnBlock()) {
+            GameOver();
+        }else {
+            GridDisplay.SetColors(Game.ShowTetris);
+        }
     }
     public static void TetrominoJ() {
         Game.MirrorGrid[0][5] = SquareColor.GREEN;
@@ -78,6 +82,7 @@ public class Board{
     }
 
 
+
 public static bool isFloorTouch(){
         int x;
         int y;
@@ -85,7 +90,7 @@ public static bool isFloorTouch(){
             for (int j =0;j<Game.MirrorGrid[0].Count;j++){
                 if (Game.MirrorGrid[i][j]!=SquareColor.TRANSPARENT){
                     x=j;
-                    y=i;
+                    y=i;    
                     if(y==21 ||Game.Grid[y+1][x] != SquareColor.TRANSPARENT ){
                         Game.score += 10;
                         if (1-(Game.score/5000.0f) < 0.1f) 
@@ -118,25 +123,32 @@ public static bool isFloorTouch(){
         Board.SpawnPiece();
     }
 
-    public static void GameOver(){
-        // Si un bloc arrive à la première ligne
-        for (int i = 0;i<Game.Grid[0].Count;i++){
-            if (Game.Grid[0][i]!=SquareColor.TRANSPARENT){
-                Game.score = 0;
-                for (int j = 0;j<Game.Grid.Count;j++){
-                    for (int k =0;k<Game.Grid[0].Count;k++){
-                        Game.Grid[j][k]=SquareColor.TRANSPARENT;
-                    }
-                }
-                for (int j = 0;j<Game.MirrorGrid.Count;j++){
-                    for (int k =0;k<Game.MirrorGrid[0].Count;k++){
-                        Game.MirrorGrid[j][k]=SquareColor.TRANSPARENT;
-                    }
-                }
-                SpawnPiece();
-                GridDisplay.GridToShow();
-                GridDisplay.SetColors(Game.ShowTetris);
+    public static bool testSpawnBlock() {
+        for (int i = 0; i < 22; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+              if (Game.MirrorGrid[i][j] != SquareColor.TRANSPARENT && Game.Grid[i][j] != SquareColor.TRANSPARENT) {
+                return true;
+              }  
             }
         }
+        return false;
+    }
+
+    public static void IsGameOver(){
+        for (int i = 0; i < 10; i++){
+            if (Game.Grid[0][i]!= SquareColor.TRANSPARENT){
+                GameOver();
+            }
+        }
+    }
+
+    public static void GameOver(){
+        GridDisplay.GridToShow();
+        GridDisplay.SetColors(Game.ShowTetris);
+        Game.score = 0;
+        Clear.clearGrid();
+        SpawnPiece();
     }
 }

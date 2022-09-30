@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine;
 public class Clear {
     public static void clearGrid(){
         List<List<SquareColor>> board = new List<List<SquareColor>>(); 
@@ -20,28 +21,29 @@ public class Clear {
 
     // Si une ligne est complète on la supprime et on descend les lignes au dessus
     public static void ClearLine(){
-        int count = 0;
-        for (int i = 0; i < 22; i++){
-            if (Game.Grid[i].Contains(SquareColor.TRANSPARENT)){
-                count++;
-            }else{
-                Game.Grid.RemoveAt(i);
-                Game.MirrorGrid.RemoveAt(i);
-                Game.ShowTetris.RemoveAt(i);
-                List<SquareColor> Ligne = new List<SquareColor>();
-                for (int j = 0; j < 10; j++){
-                    SquareColor color = SquareColor.TRANSPARENT;
-                    Ligne.Add(color);
+       for (int i = 21 ; i > 0; i--)
+       {
+            if (testLine(i)) 
+            {
+                for (int j = i; j > 0; j--)
+                {
+                    Game.Grid[j] = Game.Grid[j-1];
                 }
-                Game.Grid.Insert(0, Ligne);
-                Game.MirrorGrid.Insert(0, new List<SquareColor>(Ligne));
-                Game.ShowTetris.Insert(0, new List<SquareColor>(Ligne));
-                Game.score += 100;
+                GridDisplay.GridToShow();
+                GridDisplay.SetColors(Game.ShowTetris);
+                ClearLine();
+                break; 
             }
+       }
+    }
+
+    public static bool testLine(int i) {
+        for (int j = 0; j < 10; j++)
+        {
+            if (Game.Grid[i][j] == SquareColor.TRANSPARENT) {return false;}
         }
-        if (count == 22){
-            Game.score += 1000;
-        }
+        Game.score+=150;
+        return true;
     }
 
     // Vérifie si une ligne est complète

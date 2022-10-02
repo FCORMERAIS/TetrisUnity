@@ -5,8 +5,6 @@ using UnityEngine;
 public static class KeyBoard{
 
     // Cette fonction permet de déplacer la pièce vers la gauche
-    // Elle prend en paramètre la pièce à déplacer
-    // Elle retourne la pièce déplacée
     public static void MoveRight(){
         List<List<SquareColor>> temp = new List<List<SquareColor>>(Game.MirrorGrid);
         for (int i = 0;i<Game.MirrorGrid.Count;i++){
@@ -34,8 +32,6 @@ public static class KeyBoard{
     }
 
     // Cette fonction permet de déplacer la pièce vers la droite
-    // Elle prend en paramètre la pièce à déplacer
-    // Elle retourne la pièce déplacée 
     public static void MoveLeft(){
         List<List<SquareColor>> temp = new List<List<SquareColor>>(Game.MirrorGrid);
         for (int i = 0;i<Game.MirrorGrid.Count-1;i++){
@@ -61,6 +57,7 @@ public static class KeyBoard{
         GridDisplay.SetColors(Game.ShowTetris);
     }
 
+    // Cette fonction permet de faire descendre une pièce 
     public static void Rush() {
         GridDisplay.SetTickTime(0.03f);
     }

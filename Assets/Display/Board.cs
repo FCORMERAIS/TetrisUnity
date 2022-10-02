@@ -5,9 +5,7 @@ using Unity = UnityEngine;
 
 public class Board{
     // Cette fonction permet de générer les pièces de la partie
-    // Elle prend en paramètre le nombre de pièces à générer
     // Elle retourne une liste de pièces
-    // Cette fonction est appelée dans le script Game.cs
     public static void SpawnPiece(){
         Random rnd = new Random();
         String[] Shape = {"S","Z","T","O","I","L","J"};
@@ -86,7 +84,6 @@ public class Board{
     }
     // Cette fonction permet de vérifier si la pièce peut être placée
     // Elle retourne un booléen
-    // Cette fonction est appelée dans le script Game.cs
     public static bool isFloorTouch(){
         int x;
         int y;
@@ -128,6 +125,8 @@ public class Board{
         Board.SpawnPiece();
     }
 
+    // Cette fonction permet de vérifier si la pièce peut être placée
+    // Elle retourne un booléen
     public static bool testSpawnBlock() {
         for (int i = 0; i < 22; i++)
         {
@@ -141,6 +140,7 @@ public class Board{
         return false;
     }
 
+    // Cette fonction vérifie si une forme arrive en haut de la grille
     public static void IsGameOver(){
         for (int i = 0; i < 10; i++){
             if (Game.Grid[0][i]!= SquareColor.TRANSPARENT){
@@ -150,10 +150,10 @@ public class Board{
         
     }
 
-    public static void bestScore(){
+    // public static void bestScore(){
         
-    }
-
+    // }
+    
     public static void GameOver(){
         GridDisplay.GridToShow();
         GridDisplay.SetColors(Game.ShowTetris);

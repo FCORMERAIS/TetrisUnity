@@ -15,7 +15,7 @@ $ git clone https://github.com/FCORMERAIS/TetrisUnity.git
 
 ## Technologies
 ***
-
+* Csharp (c#)
 * Unity
 
 ## Authors

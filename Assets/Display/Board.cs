@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using Unity = UnityEngine;
 
 public class Board{
+    // Cette fonction permet de générer les pièces de la partie
+    // Elle prend en paramètre le nombre de pièces à générer
+    // Elle retourne une liste de pièces
+    // Cette fonction est appelée dans le script Game.cs
     public static void SpawnPiece(){
         Random rnd = new Random();
         String[] Shape = {"S","Z","T","O","I","L","J"};
@@ -80,10 +84,10 @@ public class Board{
         Game.MirrorGrid[1][5] = SquareColor.LIGHT_BLUE;
         Game.MirrorGrid[1][4] = SquareColor.LIGHT_BLUE;
     }
-
-
-
-public static bool isFloorTouch(){
+    // Cette fonction permet de vérifier si la pièce peut être placée
+    // Elle retourne un booléen
+    // Cette fonction est appelée dans le script Game.cs
+    public static bool isFloorTouch(){
         int x;
         int y;
         for (int i = 0;i<Game.MirrorGrid.Count;i++){
@@ -106,6 +110,7 @@ public static bool isFloorTouch(){
         }
         return false;
     }
+    
 
     public static void FloorTouch(){
         for (int i = 0;i<Game.MirrorGrid.Count;i++){
@@ -146,9 +151,7 @@ public static bool isFloorTouch(){
     }
 
     public static void bestScore(){
-        String FileToRoad = @"C:\Users\jules\TetrisUnity\Assets\Display\score.txt";
-        IEnumerable<string> line = File.ReadLines(FileToRead);
-        Console.WriteLine(String.Join(Environment.NewLine, line));
+        
     }
 
     public static void GameOver(){

@@ -30,7 +30,8 @@ public class Board{
         }else if (takeRnd == "J")
         {
             TetrominoJ();
-        }
+        }       
+
         GridDisplay.GridToShow();
         GridDisplay.SetColors(Game.ShowTetris);
     }
@@ -39,42 +40,66 @@ public class Board{
         Game.MirrorGrid[1][5] = SquareColor.GREEN;
         Game.MirrorGrid[2][5] = SquareColor.GREEN;
         Game.MirrorGrid[2][4] = SquareColor.GREEN;
+        Game.Color = SquareColor.GREEN;
+        Game.xPiece = 5;
+        Game.yPiece = 1;
     }
     public static void TetrominoL() {
         Game.MirrorGrid[0][4] = SquareColor.RED;
         Game.MirrorGrid[1][4] = SquareColor.RED;
         Game.MirrorGrid[2][4] = SquareColor.RED;
         Game.MirrorGrid[2][5] = SquareColor.RED;
+        Game.Color = SquareColor.RED;
+        Game.xPiece = 4;
+        Game.yPiece = 1;
     }
     public static void TetrominoO() {
         Game.MirrorGrid[0][5] = SquareColor.PURPLE;
         Game.MirrorGrid[1][5] = SquareColor.PURPLE;
         Game.MirrorGrid[0][4] = SquareColor.PURPLE;
         Game.MirrorGrid[1][4] = SquareColor.PURPLE;
+        
+
     }
     public static void TetrominoI() {
         Game.MirrorGrid[0][3] = SquareColor.ORANGE;
         Game.MirrorGrid[0][5] = SquareColor.ORANGE;
         Game.MirrorGrid[0][4] = SquareColor.ORANGE;
         Game.MirrorGrid[0][6] = SquareColor.ORANGE;
+        Game.Color = SquareColor.ORANGE;
+
+        Game.xPiece = 5;
+        Game.yPiece = 0;
     }
     public static void TetrominoT() {
         Game.MirrorGrid[0][5] = SquareColor.YELLOW;
         Game.MirrorGrid[1][6] = SquareColor.YELLOW;
         Game.MirrorGrid[1][5] = SquareColor.YELLOW;
         Game.MirrorGrid[1][4] = SquareColor.YELLOW;
+        Game.Color = SquareColor.YELLOW;
+
+        Game.xPiece = 5;
+        Game.yPiece = 1;
     }
     public static void TetrominoS() {
         Game.MirrorGrid[0][5] = SquareColor.DEEP_BLUE;
         Game.MirrorGrid[0][4] = SquareColor.DEEP_BLUE;
         Game.MirrorGrid[1][5] = SquareColor.DEEP_BLUE;
         Game.MirrorGrid[1][6] = SquareColor.DEEP_BLUE;
+        Game.Color = SquareColor.DEEP_BLUE;
+
+        Game.xPiece = 5;
+        Game.yPiece = 1;
     }
     public static void TetrominoZ() {
         Game.MirrorGrid[0][5] = SquareColor.LIGHT_BLUE;
         Game.MirrorGrid[0][6] = SquareColor.LIGHT_BLUE;
         Game.MirrorGrid[1][5] = SquareColor.LIGHT_BLUE;
         Game.MirrorGrid[1][4] = SquareColor.LIGHT_BLUE;
+        Game.Color = SquareColor.LIGHT_BLUE;
+
+        Game.xPiece = 5;
+        Game.yPiece = 1;
     }
 
 

@@ -2,8 +2,6 @@
 
 Le but de ce devoir est d'évaluer votre compréhension du langage C# et de ses principaux mécanismes à travers la mise en place d'un jeu de tetris sur Unity, en respectant les principes de la Programmation Orientée Objet.
 
-## Description
-
 
 ## Setup
 

@@ -83,7 +83,6 @@ public static class KeyBoard{
                     int y = Game.xPiece+Game.yPiece-j;
                     if (x >= 0 && y >= 0 && x < Game.Grid[0].Count && y < Game.Grid.Count && Game.Grid[(int)y][(int)x] == SquareColor.TRANSPARENT){
                         Coor.Add(new int[4]{i,j,(int)x,(int)y});
-                        Debug.Log(i+" "+j+" "+x+" "+y);
                     }else{return;}
                 }
             }

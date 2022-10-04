@@ -175,5 +175,6 @@ public static bool isFloorTouch(){
         GridDisplay.SetColors(Game.ShowTetris);
         Game.score = 0;
         GridDisplay.TriggerGameOver();
+        Game.Gameover = true;
     }
 }

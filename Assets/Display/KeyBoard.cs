@@ -99,7 +99,6 @@ public static class KeyBoard{
             Game.MirrorGrid[Coor[i][3]][Coor[i][2]] = Game.Color;
             GridDisplay.GridToShow();
             GridDisplay.SetColors(Game.ShowTetris);
-            // Thread.Sleep(500);
         }
         
     }

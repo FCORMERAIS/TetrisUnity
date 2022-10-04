@@ -74,25 +74,27 @@ public class GridDisplay : MonoBehaviour
     }
 
     private static void lunchtime() {
-        List<SquareColor> Ligne = new List<SquareColor>();
-        for (int i = 21; i > 0; i--)
-        {
-            Game.MirrorGrid[i] = Game.MirrorGrid[i-1];
+        if (!Game.Gameover) {
+            List<SquareColor> Ligne = new List<SquareColor>();
+            for (int i = 21; i > 0; i--)
+            {
+                Game.MirrorGrid[i] = Game.MirrorGrid[i-1];
+            }
+            for (int j = 0;j<10;j++){
+                SquareColor color = SquareColor.TRANSPARENT;
+                Ligne.Add(color);
+            }
+            Game.MirrorGrid[0] = Ligne;
+            Game.yPiece +=1;
+            GridToShow();
+            SetColors(Game.ShowTetris);
+            if (Board.isFloorTouch()) {
+                Board.FloorTouch();
+                Clear.ClearLine();
+                Board.IsGameOver();
+            }
+            GridDisplay.SetScore(Game.score);
         }
-        for (int j = 0;j<10;j++){
-            SquareColor color = SquareColor.TRANSPARENT;
-            Ligne.Add(color);
-        }
-        Game.MirrorGrid[0] = Ligne;
-        Game.yPiece +=1;
-        GridToShow();
-        SetColors(Game.ShowTetris);
-        if (Board.isFloorTouch()) {
-            Board.FloorTouch();
-            Clear.ClearLine();
-            Board.IsGameOver();
-        }
-        GridDisplay.SetScore(Game.score);
     }
 
     public static void GridToShow() {

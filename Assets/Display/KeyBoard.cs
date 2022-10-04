@@ -72,15 +72,18 @@ public static class KeyBoard{
     }
     
     public static void Rotate(){
-        double theta = 90* Math.PI / 180;
+        if(Game.Color == SquareColor.PURPLE){
+            return;
+        }
         List<int[]> Coor = new List<int[]>();
         for (int i = 0;i<Game.Grid.Count;i++){
             for (int j = 0;j<Game.Grid[0].Count;j++){
                 if (Game.MirrorGrid[i][j]!= SquareColor.TRANSPARENT ){
-                    double x = Math.Cos(theta) * (j-Game.xPiece) - Math.Sin(theta) * (i-Game.yPiece) + Game.xPiece;
-                    double y = Math.Sin(theta) * (j-Game.xPiece) + Math.Cos(theta) * (i-Game.yPiece) + Game.yPiece;
-                    if (x > 0 && y > 0 && x < Game.Grid[0].Count && y < Game.Grid.Count && Game.Grid[(int)y][(int)x] == SquareColor.TRANSPARENT){
+                    int x = i+Game.xPiece-Game.yPiece;
+                    int y = Game.xPiece+Game.yPiece-j;
+                    if (x >= 0 && y >= 0 && x < Game.Grid[0].Count && y < Game.Grid.Count && Game.Grid[(int)y][(int)x] == SquareColor.TRANSPARENT){
                         Coor.Add(new int[4]{i,j,(int)x,(int)y});
+                        Debug.Log(i+" "+j+" "+x+" "+y);
                     }else{return;}
                 }
             }

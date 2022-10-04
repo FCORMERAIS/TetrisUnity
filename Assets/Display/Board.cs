@@ -39,7 +39,7 @@ public class Board{
             GridDisplay.SetColors(Game.ShowTetris);
         }
     }
-    public static void TetrominoJ() {
+    private static void TetrominoJ() {
         Game.MirrorGrid[0][5] = SquareColor.GREEN;
         Game.MirrorGrid[1][5] = SquareColor.GREEN;
         Game.MirrorGrid[2][5] = SquareColor.GREEN;
@@ -48,7 +48,7 @@ public class Board{
         Game.xPiece = 5;
         Game.yPiece = 1;
     }
-    public static void TetrominoL() {
+    private static void TetrominoL() {
         Game.MirrorGrid[0][4] = SquareColor.RED;
         Game.MirrorGrid[1][4] = SquareColor.RED;
         Game.MirrorGrid[2][4] = SquareColor.RED;
@@ -57,7 +57,7 @@ public class Board{
         Game.xPiece = 4;
         Game.yPiece = 1;
     }
-    public static void TetrominoO() {
+    private static void TetrominoO() {
         Game.MirrorGrid[0][5] = SquareColor.PURPLE;
         Game.MirrorGrid[1][5] = SquareColor.PURPLE;
         Game.MirrorGrid[0][4] = SquareColor.PURPLE;
@@ -66,7 +66,7 @@ public class Board{
 
 
     }
-    public static void TetrominoI() {
+    private static void TetrominoI() {
         Game.MirrorGrid[0][3] = SquareColor.ORANGE;
         Game.MirrorGrid[0][5] = SquareColor.ORANGE;
         Game.MirrorGrid[0][4] = SquareColor.ORANGE;
@@ -76,7 +76,7 @@ public class Board{
         Game.xPiece = 5;
         Game.yPiece = 0;
     }
-    public static void TetrominoT() {
+    private static void TetrominoT() {
         Game.MirrorGrid[0][5] = SquareColor.YELLOW;
         Game.MirrorGrid[1][6] = SquareColor.YELLOW;
         Game.MirrorGrid[1][5] = SquareColor.YELLOW;
@@ -86,7 +86,7 @@ public class Board{
         Game.xPiece = 5;
         Game.yPiece = 1;
     }
-    public static void TetrominoS() {
+    private static void TetrominoS() {
         Game.MirrorGrid[0][5] = SquareColor.DEEP_BLUE;
         Game.MirrorGrid[0][4] = SquareColor.DEEP_BLUE;
         Game.MirrorGrid[1][5] = SquareColor.DEEP_BLUE;
@@ -96,7 +96,7 @@ public class Board{
         Game.xPiece = 5;
         Game.yPiece = 1;
     }
-    public static void TetrominoZ() {
+    private static void TetrominoZ() {
         Game.MirrorGrid[0][5] = SquareColor.LIGHT_BLUE;
         Game.MirrorGrid[0][6] = SquareColor.LIGHT_BLUE;
         Game.MirrorGrid[1][5] = SquareColor.LIGHT_BLUE;
@@ -149,7 +149,7 @@ public static bool isFloorTouch(){
         Board.SpawnPiece();
     }
 
-    public static bool testSpawnBlock() {
+    private static bool testSpawnBlock() {
         for (int i = 0; i < 22; i++)
         {
             for (int j = 0; j < 10; j++)
@@ -170,11 +170,10 @@ public static bool isFloorTouch(){
         }
     }
 
-    public static void GameOver(){
+    private static void GameOver(){
         GridDisplay.GridToShow();
         GridDisplay.SetColors(Game.ShowTetris);
         Game.score = 0;
-        Clear.clearGrid();
-        SpawnPiece();
+        GridDisplay.TriggerGameOver();
     }
 }

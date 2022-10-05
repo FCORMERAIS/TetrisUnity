@@ -1,26 +1,27 @@
 # Tetris
-***
-Le but de ce devoir est d'évaluer votre compréhension du langage C# et de ses principaux mécanismes à travers la mise en place d'un jeu de tetris sur Unity, en respectant les principes de la Programmation Orientée Objet.
 
-## Description
-***
+Le but de ce devoir est d'évaluer notre compréhension du langage C# et de ses principaux mécanismes à travers la mise en place d'un jeu de tetris sur Unity, en respectant les principes de la Programmation Orientée Objet.
+
 
 ## Setup
-***
-To run this project, install it locally using npm:
+
+Pour lancer et installer ce projet :
 
 ```
 $ git clone https://github.com/FCORMERAIS/TetrisUnity.git
 ```
+```
+[https://unity.com/download](Unity Hub) and Unity 2019.4.1f1
+```
 
 ## Technologies
-***
 
+* Csharp (c#)
 * Unity
 * C#
 
-## Authors
-***
+## Auteurs
+
 This project was made by:
 
 * Flavio Cormerais (B2 en informatique)

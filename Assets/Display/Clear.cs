@@ -6,7 +6,7 @@ using UnityEngine;
 public class Clear {
     // Si une ligne est complète on la supprime et on descend les lignes au dessus
     public static void ClearLine(){
-       for (int i = 21 ; i > 0; i--)
+       for (int i = Game.Grid.Count-1 ; i > 0; i--)
        {
             if (testLine(i)) 
             {
@@ -22,18 +22,19 @@ public class Clear {
        }
     }
 
+    // Cette fonction permet de tester si une ligne est complète et ajoute 150 points au score
     private static bool testLine(int i) {
-        for (int j = 0; j < 10; j++)
+        for (int j = 0; j < Game.Grid[0].Count; j++)
         {
             if (Game.Grid[i][j] == SquareColor.TRANSPARENT) {return false;}
         }
-        Game.score+=150;
+        Game.Score+=150;
         return true;
     }
 
-    // Vérifie si une ligne est complète
+    // Vérifie si une ligne est complète et la supprime
     private static void VerifyLineCompleted(){
-        for (int i = 0; i < 22; i++){
+        for (int i = 0; i < Game.Grid.Count; i++){
             if (!Game.Grid[i].Contains(SquareColor.TRANSPARENT)){
                 ClearLine();
             }

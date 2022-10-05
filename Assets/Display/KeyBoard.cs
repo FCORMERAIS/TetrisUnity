@@ -6,27 +6,28 @@ using System.Threading;
 
 public static class KeyBoard{
 
+    // Cette fonction permet de déplacer la pièce vers la gauche
     public static void MoveRight(){
         for (int i = 0;i<Game.MirrorGrid.Count;i++){
-            if (Game.MirrorGrid[i][9]!=SquareColor.TRANSPARENT){
+            if (Game.MirrorGrid[i][Game.MirrorGrid[0].Count-1]!=SquareColor.TRANSPARENT){
                 return;
             }
         }
         for (int i = 0;i<Game.MirrorGrid.Count;i++){
-            for (int j=9;j>0;j--){
+            for (int j=Game.MirrorGrid[0].Count-1;j>0;j--){
                 if (Game.MirrorGrid[i][j-1]!=SquareColor.TRANSPARENT && Game.Grid[i][j]!=SquareColor.TRANSPARENT ){
                     return;
                 }
             }
         }
         for (int i = 0;i<Game.MirrorGrid.Count-1;i++){
-            for (int j=9;j>0;j--){
+            for (int j=Game.MirrorGrid[0].Count-1;j>0;j--){
                     Game.MirrorGrid[i][j] = Game.MirrorGrid[i][j-1];
             }
             Game.MirrorGrid[i][0] =SquareColor.TRANSPARENT;
         }
         Game.xPiece+=1;
-        if (Board.isFloorTouch()) {
+        if (Board.IsFloorTouch()) {
             Board.FloorTouch();
             Clear.ClearLine();
             Board.IsGameOver();
@@ -35,6 +36,7 @@ public static class KeyBoard{
         GridDisplay.SetColors(Game.ShowTetris);
     }
 
+    // Cette fonction permet de déplacer la pièce vers la droite
     public static void MoveLeft(){
         for (int i = 0;i<Game.MirrorGrid.Count-1;i++){
             if (Game.MirrorGrid[i][0]!=SquareColor.TRANSPARENT){
@@ -42,20 +44,21 @@ public static class KeyBoard{
             }  
         }
         for (int i = 0;i<Game.MirrorGrid.Count;i++){
-            for (int j=0;j<9;j++){
+            for (int j=0;j<Game.MirrorGrid[0].Count-1;j++){
                 if (Game.MirrorGrid[i][j+1]!=SquareColor.TRANSPARENT && Game.Grid[i][j]!=SquareColor.TRANSPARENT ){
                     return;
                 }
             }
         }
         for (int i = 0;i<Game.MirrorGrid.Count-1;i++){
-            for (int j=0;j<9;j++){
+            for (int j=0;j<Game.MirrorGrid[0].Count-1;j++){
                 Game.MirrorGrid[i][j] = Game.MirrorGrid[i][j+1];
             }
-            Game.MirrorGrid[i][9] = SquareColor.TRANSPARENT;
+            Game.MirrorGrid[i][Game.MirrorGrid[0].Count-1] = SquareColor.TRANSPARENT;
+
         }
         Game.xPiece-=1;
-        if (Board.isFloorTouch()) {
+        if (Board.IsFloorTouch()) {
             Board.FloorTouch();
             Clear.ClearLine();
             Board.IsGameOver();
@@ -64,10 +67,12 @@ public static class KeyBoard{
         GridDisplay.SetColors(Game.ShowTetris);
     }
 
+    // Cette fonction permet de faire descendre une pièce complétement
     public static void Rush() {
         GridDisplay.SetTickTime(0.03f);
     }
     
+    // Cette fonction permet de faire tourner une pièce
     public static void Rotate(){
         if(Game.Color == SquareColor.PURPLE){
             return;
@@ -84,9 +89,9 @@ public static class KeyBoard{
                 }
             }
         }
-        for (int i=0;i<22;i++){
+        for (int i=0;i<Game.MirrorGrid.Count;i++){
             List<SquareColor> Ligne = new List<SquareColor>();
-            for (int j = 0;j<10;j++){
+            for (int j = 0;j<Game.MirrorGrid[0].Count;j++){
                 SquareColor color = SquareColor.TRANSPARENT;
                 Ligne.Add(color);
             }

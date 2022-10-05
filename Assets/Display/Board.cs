@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Unity = UnityEngine;
 
 public class Board{
+    // Cette fonction permet de générer les pièces de la partie
+    // Elle retourne une liste de pièces
     public static void SpawnPiece(){
         Random rnd = new Random();
         String[] Shape = {"S","Z","T","O","I","L","J"};
@@ -34,7 +36,7 @@ public class Board{
 
         GridToShow();
         if (testSpawnBlock()) {
-            GameOver();
+            FloorTouch();
         }else {
             GridDisplay.SetColors(Game.ShowTetris);
         }
@@ -102,10 +104,9 @@ public class Board{
         Game.xPiece = 5;
         Game.yPiece = 1;
     }
-
-
-
-public static bool isFloorTouch(){
+    // Cette fonction permet de vérifier si la pièce peut être placée
+    // Elle retourne un booléen
+    public static bool IsFloorTouch(){
         int x;
         int y;
         for (int i = 0;i<Game.MirrorGrid.Count;i++){
@@ -114,12 +115,12 @@ public static bool isFloorTouch(){
                     x=j;
                     y=i;    
                     if(y==21 ||Game.Grid[y+1][x] != SquareColor.TRANSPARENT ){
-                        Game.score += 10;
-                        if (1-(Game.score/5000.0f) < 0.1f) 
+                        Game.Score += 10;
+                        if (1-(Game.Score/5000.0f) < 0.1f) 
                         {
                             GridDisplay.SetTickTime(0.1f);
                         }else {
-                            GridDisplay.SetTickTime(1-(Game.score/5000.0f));
+                            GridDisplay.SetTickTime(1-(Game.Score/5000.0f));
                         }
                         return true;
                     }
@@ -128,7 +129,8 @@ public static bool isFloorTouch(){
         }
         return false;
     }
-
+    
+    // Cette fonction permet de vérifier si la pièce peut être placée
     public static void FloorTouch(){
         for (int i = 0;i<Game.MirrorGrid.Count;i++){
             for (int j =0;j<Game.MirrorGrid[0].Count;j++){
@@ -142,13 +144,17 @@ public static bool isFloorTouch(){
                 Game.MirrorGrid[i][j]=SquareColor.TRANSPARENT;
             }
         }
-        Board.SpawnPiece();
+        IsGameOver();
+        if (!Game.Gameover) {
+            Board.SpawnPiece();
+        }
     }
 
+    // Cette fonction permet de vérifier si la pièce peux spawn
     private static bool testSpawnBlock() {
-        for (int i = 0; i < 22; i++)
+        for (int i = 0; i < Game.Grid.Count; i++)
         {
-            for (int j = 0; j < 10; j++)
+            for (int j = 0; j < Game.Grid[0].Count; j++)
             {
               if (Game.MirrorGrid[i][j] != SquareColor.TRANSPARENT && Game.Grid[i][j] != SquareColor.TRANSPARENT) {
                 return true;
@@ -158,28 +164,29 @@ public static bool isFloorTouch(){
         return false;
     }
 
+    // Cette fonction vérifie si une forme arrive en haut de la grille
     public static void IsGameOver(){
-        for (int i = 0; i < 10; i++){
+        for (int i = 0; i < Game.Grid[0].Count; i++){
             if (Game.Grid[0][i]!= SquareColor.TRANSPARENT){
                 GameOver();
+                return ;
             }
         }
+        
     }
 
     private static void GameOver(){
-        GridToShow();
-        GridDisplay.SetColors(Game.ShowTetris);
-        Game.score = 0;
         GridDisplay.TriggerGameOver();
+        Game.Gameover = true;
     }
-
-    public static void lunchtime() {
+    // Cette fonction se répète à chaque tick du jeu.
+    public static void Repeat() {
         List<SquareColor> Ligne = new List<SquareColor>();
-        for (int i = 21; i > 0; i--)
+        for (int i = Game.MirrorGrid.Count-1; i > 0; i--)
         {
             Game.MirrorGrid[i] = Game.MirrorGrid[i-1];
         }
-        for (int j = 0;j<10;j++){
+        for (int j = 0;j<Game.MirrorGrid[0].Count;j++){
             SquareColor color = SquareColor.TRANSPARENT;
             Ligne.Add(color);
         }
@@ -187,17 +194,18 @@ public static bool isFloorTouch(){
         Game.yPiece +=1;
         GridToShow();
         GridDisplay.SetColors(Game.ShowTetris);
-        if (Board.isFloorTouch()) {
+        if (Board.IsFloorTouch()) {
             Board.FloorTouch();
             Clear.ClearLine();
             Board.IsGameOver();
         }
-        GridDisplay.SetScore(Game.score);
+        GridDisplay.SetScore(Game.Score);
     }
 
+    // Cette fonction mélange nos deux grilles pour n'en faire qu'une seule.
     public static void GridToShow() {
-        for (int i=0;i<22;i++){
-            for (int j = 0;j<10;j++){
+        for (int i=0;i<Game.Grid.Count;i++){
+            for (int j = 0;j<Game.Grid[0].Count;j++){
                 if (Game.Grid[i][j] != SquareColor.TRANSPARENT) {
                     Game.ShowTetris[i][j] = Game.Grid[i][j];
                 }else if (Game.MirrorGrid[i][j] != SquareColor.TRANSPARENT) {

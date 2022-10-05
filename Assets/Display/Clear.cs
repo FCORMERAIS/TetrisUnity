@@ -14,7 +14,7 @@ public class Clear {
                 {
                     Game.Grid[j] = Game.Grid[j-1];
                 }
-                GridDisplay.GridToShow();
+                Board.GridToShow();
                 GridDisplay.SetColors(Game.ShowTetris);
                 ClearLine();
                 break; 

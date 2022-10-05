@@ -31,10 +31,8 @@ public static class KeyBoard{
             Clear.ClearLine();
             Board.IsGameOver();
         }
-        GridDisplay.GridToShow();
+        Board.GridToShow();
         GridDisplay.SetColors(Game.ShowTetris);
-
-        
     }
 
     public static void MoveLeft(){
@@ -55,7 +53,6 @@ public static class KeyBoard{
                 Game.MirrorGrid[i][j] = Game.MirrorGrid[i][j+1];
             }
             Game.MirrorGrid[i][9] = SquareColor.TRANSPARENT;
-
         }
         Game.xPiece-=1;
         if (Board.isFloorTouch()) {
@@ -63,7 +60,7 @@ public static class KeyBoard{
             Clear.ClearLine();
             Board.IsGameOver();
         }
-        GridDisplay.GridToShow();
+        Board.GridToShow();
         GridDisplay.SetColors(Game.ShowTetris);
     }
 
@@ -97,10 +94,8 @@ public static class KeyBoard{
         }
         for (int i = 0;i<Coor.Count;i++){
             Game.MirrorGrid[Coor[i][3]][Coor[i][2]] = Game.Color;
-            GridDisplay.GridToShow();
+            Board.GridToShow();
             GridDisplay.SetColors(Game.ShowTetris);
-            // Thread.Sleep(500);
         }
-        
     }
 }

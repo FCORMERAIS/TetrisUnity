@@ -9,8 +9,4 @@ public static class Game{
     public static int xPiece = 0;
     public static int yPiece = 0;
     public static SquareColor Color;
-    public static void tr(){
-        Debug.Log(Game.xPiece);
-        Debug.Log(Game.yPiece);
-    }
 }

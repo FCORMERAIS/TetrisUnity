@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class GridDisplay : MonoBehaviour
 {
-
     // Hauteur de la grille en nombre de cases
     private int height = 22;
     // Largeur de la grille en nombre de cases
     private int width = 10;
     // Cette fonction se lance au lancement du jeu, avant le premier affichage.
-    private static void Initialize(){
+    private void Initialize(){
         List<List<SquareColor>> board = new List<List<SquareColor>>(); 
-        for (int i=0;i<22;i++){
+        for (int i=0;i<height;i++){
             List<SquareColor> Ligne = new List<SquareColor>();
-            for (int j = 0;j<10;j++){
+            for (int j = 0;j<width;j++){
                 SquareColor color = SquareColor.TRANSPARENT;
                 Ligne.Add(color);
             }
@@ -23,14 +22,11 @@ public class GridDisplay : MonoBehaviour
             Game.ShowTetris.Add(new List<SquareColor>(Ligne));
         }
         Board.SpawnPiece();
-        // Game.Grid[0][0] = SquareColor.RED;
-
-        SetTickFunction(lunchtime);
+        SetTickFunction(Board.lunchtime);
         GridDisplay.SetMoveLeftFunction(KeyBoard.MoveLeft);
         GridDisplay.SetMoveRightFunction(KeyBoard.MoveRight);
         GridDisplay.SetRushFunction(KeyBoard.Rush);
         GridDisplay.SetRotateFunction(KeyBoard.Rotate);
-
     }
     
         // TODO : Complétez cette fonction de manière à appeler le code qui initialise votre jeu.
@@ -71,42 +67,6 @@ public class GridDisplay : MonoBehaviour
     // et doit renvoyer void, et ne prendre aucun argument.
     private static void SetMoveRightFunction(MoveFunction function){
         _grid.MoveRight = function;
-    }
-
-    private static void lunchtime() {
-        List<SquareColor> Ligne = new List<SquareColor>();
-        for (int i = 21; i > 0; i--)
-        {
-            Game.MirrorGrid[i] = Game.MirrorGrid[i-1];
-        }
-        for (int j = 0;j<10;j++){
-            SquareColor color = SquareColor.TRANSPARENT;
-            Ligne.Add(color);
-        }
-        Game.MirrorGrid[0] = Ligne;
-        Game.yPiece +=1;
-        GridToShow();
-        SetColors(Game.ShowTetris);
-        if (Board.isFloorTouch()) {
-            Board.FloorTouch();
-            Clear.ClearLine();
-            Board.IsGameOver();
-        }
-        GridDisplay.SetScore(Game.score);
-    }
-
-    public static void GridToShow() {
-        for (int i=0;i<22;i++){
-            for (int j = 0;j<10;j++){
-                if (Game.Grid[i][j] != SquareColor.TRANSPARENT) {
-                    Game.ShowTetris[i][j] = Game.Grid[i][j];
-                }else if (Game.MirrorGrid[i][j] != SquareColor.TRANSPARENT) {
-                    Game.ShowTetris[i][j] = Game.MirrorGrid[i][j];
-                }else {
-                    Game.ShowTetris[i][j] = SquareColor.TRANSPARENT;
-                }
-            }
-        }
     }
 
     // Paramètre la fonction devant être appelée lorsqu'on appuie sur la barre d'espace

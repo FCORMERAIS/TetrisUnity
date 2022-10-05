@@ -134,7 +134,7 @@ public class Board{
         return false;
     }
     
-
+    // Cette fonction permet de vérifier si une pièce est touché
     public static void FloorTouch(){
         for (int i = 0;i<Game.MirrorGrid.Count;i++){
             for (int j =0;j<Game.MirrorGrid[0].Count;j++){

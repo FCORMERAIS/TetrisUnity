@@ -5,7 +5,7 @@ Le but de ce devoir est d'évaluer votre compréhension du langage C# et de ses 
 
 ## Setup
 
-To run this project and install:
+Pour lancer et installer ce projet :
 
 ```
 $ git clone https://github.com/FCORMERAIS/TetrisUnity.git
@@ -20,7 +20,7 @@ $ git clone https://github.com/FCORMERAIS/TetrisUnity.git
 * Unity
 * C#
 
-## Authors
+## Auteurs
 
 This project was made by:
 

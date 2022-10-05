@@ -22,6 +22,7 @@ public class Clear {
        }
     }
 
+    // Cette fonction permet de tester si une ligne est complète et ajoute 150 points au score
     private static bool testLine(int i) {
         for (int j = 0; j < Game.Grid[0].Count; j++)
         {
@@ -31,7 +32,7 @@ public class Clear {
         return true;
     }
 
-    // Vérifie si une ligne est complète
+    // Vérifie si une ligne est complète et la supprime
     private static void VerifyLineCompleted(){
         for (int i = 0; i < Game.Grid.Count; i++){
             if (!Game.Grid[i].Contains(SquareColor.TRANSPARENT)){

@@ -69,11 +69,12 @@ public static class KeyBoard{
         GridDisplay.SetColors(Game.ShowTetris);
     }
 
-    // Cette fonction permet de faire descendre une pièce 
+    // Cette fonction permet de faire descendre une pièce complétement
     public static void Rush() {
         GridDisplay.SetTickTime(0.03f);
     }
     
+    // Cette fonction permet de faire tourner une pièce
     public static void Rotate(){
         if(Game.Color == SquareColor.PURPLE){
             return;

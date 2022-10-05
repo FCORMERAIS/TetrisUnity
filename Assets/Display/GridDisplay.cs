@@ -73,6 +73,7 @@ public class GridDisplay : MonoBehaviour
         _grid.MoveRight = function;
     }
 
+    // Cette fonction se répète à chaque tick du jeu.
     private static void Repeat() {
         if (!Game.Gameover) {
             List<SquareColor> Ligne = new List<SquareColor>();
@@ -98,6 +99,7 @@ public class GridDisplay : MonoBehaviour
         }
     }
 
+    // Cette fonction mélange nos deux grilles pour n'en faire qu'une seule.
     public static void GridToShow() {
         for (int i=0;i<Game.Grid.Count;i++){
             for (int j = 0;j<Game.Grid[0].Count;j++){

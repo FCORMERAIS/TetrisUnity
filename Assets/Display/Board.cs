@@ -134,7 +134,7 @@ public class Board{
         return false;
     }
     
-
+    // Cette fonction permet de vérifier si la pièce peut être placée
     public static void FloorTouch(){
         for (int i = 0;i<Game.MirrorGrid.Count;i++){
             for (int j =0;j<Game.MirrorGrid[0].Count;j++){
@@ -154,6 +154,7 @@ public class Board{
         }
     }
 
+    // Cette fonction permet de vérifier si la pièce peux spawn
     private static bool testSpawnBlock() {
         for (int i = 0; i < Game.Grid.Count; i++)
         {

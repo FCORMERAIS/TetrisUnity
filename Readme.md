@@ -11,7 +11,7 @@ To run this project and install:
 $ git clone https://github.com/FCORMERAIS/TetrisUnity.git
 ```
 ```
-[https://unity.com/download](Unity) Hub and Unity 2019.4.1f1
+[https://unity.com/download](Unity Hub) and Unity 2019.4.1f1
 ```
 
 ## Technologies

@@ -36,7 +36,7 @@ public class Board{
 
         GridDisplay.GridToShow();
         if (testSpawnBlock()) {
-            GameOver();
+            FloorTouch();
         }else {
             GridDisplay.SetColors(Game.ShowTetris);
         }
@@ -110,7 +110,7 @@ public class Board{
     }
     // Cette fonction permet de vérifier si la pièce peut être placée
     // Elle retourne un booléen
-    public static bool isFloorTouch(){
+    public static bool IsFloorTouch(){
         int x;
         int y;
         for (int i = 0;i<Game.MirrorGrid.Count;i++){
@@ -119,12 +119,12 @@ public class Board{
                     x=j;
                     y=i;    
                     if(y==21 ||Game.Grid[y+1][x] != SquareColor.TRANSPARENT ){
-                        Game.score += 10;
-                        if (1-(Game.score/5000.0f) < 0.1f) 
+                        Game.Score += 10;
+                        if (1-(Game.Score/5000.0f) < 0.1f) 
                         {
                             GridDisplay.SetTickTime(0.1f);
                         }else {
-                            GridDisplay.SetTickTime(1-(Game.score/5000.0f));
+                            GridDisplay.SetTickTime(1-(Game.Score/5000.0f));
                         }
                         return true;
                     }
@@ -148,13 +148,16 @@ public class Board{
                 Game.MirrorGrid[i][j]=SquareColor.TRANSPARENT;
             }
         }
-        Board.SpawnPiece();
+        IsGameOver();
+        if (!Game.Gameover) {
+            Board.SpawnPiece();
+        }
     }
 
     private static bool testSpawnBlock() {
-        for (int i = 0; i < 22; i++)
+        for (int i = 0; i < Game.Grid.Count; i++)
         {
-            for (int j = 0; j < 10; j++)
+            for (int j = 0; j < Game.Grid[0].Count; j++)
             {
               if (Game.MirrorGrid[i][j] != SquareColor.TRANSPARENT && Game.Grid[i][j] != SquareColor.TRANSPARENT) {
                 return true;
@@ -166,9 +169,10 @@ public class Board{
 
     // Cette fonction vérifie si une forme arrive en haut de la grille
     public static void IsGameOver(){
-        for (int i = 0; i < 10; i++){
+        for (int i = 0; i < Game.Grid[0].Count; i++){
             if (Game.Grid[0][i]!= SquareColor.TRANSPARENT){
                 GameOver();
+                return ;
             }
         }
         

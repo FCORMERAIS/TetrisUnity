@@ -10,11 +10,11 @@ public class GridDisplay : MonoBehaviour
     // Largeur de la grille en nombre de cases
     private int width = 10;
     // Cette fonction se lance au lancement du jeu, avant le premier affichage.
-    private static void Initialize(){
+    private void Initialize(){
         List<List<SquareColor>> board = new List<List<SquareColor>>(); 
-        for (int i=0;i<22;i++){
+        for (int i=0;i<height;i++){
             List<SquareColor> Ligne = new List<SquareColor>();
-            for (int j = 0;j<10;j++){
+            for (int j = 0;j<width;j++){
                 SquareColor color = SquareColor.TRANSPARENT;
                 Ligne.Add(color);
             }
@@ -25,7 +25,7 @@ public class GridDisplay : MonoBehaviour
         Board.SpawnPiece();
         
 
-        SetTickFunction(lunchtime);
+        SetTickFunction(Repeat);
         GridDisplay.SetMoveLeftFunction(KeyBoard.MoveLeft);
         GridDisplay.SetMoveRightFunction(KeyBoard.MoveRight);
         GridDisplay.SetRushFunction(KeyBoard.Rush);
@@ -73,35 +73,34 @@ public class GridDisplay : MonoBehaviour
         _grid.MoveRight = function;
     }
 
-    private static void lunchtime() {
+    private static void Repeat() {
         if (!Game.Gameover) {
             List<SquareColor> Ligne = new List<SquareColor>();
-            for (int i = 21; i > 0; i--)
+            for (int i = Game.MirrorGrid.Count-1; i > 0; i--)
             {
                 Game.MirrorGrid[i] = Game.MirrorGrid[i-1];
             }
-            for (int j = 0;j<10;j++){
+            for (int j = 0;j<Game.MirrorGrid[0].Count;j++){
                 SquareColor color = SquareColor.TRANSPARENT;
                 Ligne.Add(color);
             }
             Game.MirrorGrid[0] = Ligne;
             Game.yPiece +=1;
-            if (!Game.Gameover) {
-                GridToShow();
-            }
-            SetColors(Game.ShowTetris);
-            if (Board.isFloorTouch()) {
+            if (Board.IsFloorTouch()) {
                 Board.FloorTouch();
                 Clear.ClearLine();
-                Board.IsGameOver();
             }
-            GridDisplay.SetScore(Game.score);
+            if (!Game.Gameover) {
+                GridToShow();
+                SetColors(Game.ShowTetris);
+            }
+            GridDisplay.SetScore(Game.Score);
         }
     }
 
     public static void GridToShow() {
-        for (int i=0;i<22;i++){
-            for (int j = 0;j<10;j++){
+        for (int i=0;i<Game.Grid.Count;i++){
+            for (int j = 0;j<Game.Grid[0].Count;j++){
                 if (Game.Grid[i][j] != SquareColor.TRANSPARENT) {
                     Game.ShowTetris[i][j] = Game.Grid[i][j];
                 }else if (Game.MirrorGrid[i][j] != SquareColor.TRANSPARENT) {

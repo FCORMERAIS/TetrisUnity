@@ -25,6 +25,11 @@ public static class KeyBoard{
             }
             Game.MirrorGrid[i][0] =SquareColor.TRANSPARENT;
         }
+        if (Board.isFloorTouch()) {
+            Board.FloorTouch();
+            Clear.ClearLine();
+            Board.IsGameOver();
+        }
         GridDisplay.GridToShow();
         GridDisplay.SetColors(Game.ShowTetris);
 
@@ -52,6 +57,11 @@ public static class KeyBoard{
             }
             Game.MirrorGrid[i][9] = SquareColor.TRANSPARENT;
 
+        }
+        if (Board.isFloorTouch()) {
+            Board.FloorTouch();
+            Clear.ClearLine();
+            Board.IsGameOver();
         }
         GridDisplay.GridToShow();
         GridDisplay.SetColors(Game.ShowTetris);

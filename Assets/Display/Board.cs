@@ -32,7 +32,8 @@ public class Board{
         }else if (takeRnd == "J")
         {
             TetrominoJ();
-        }
+        }       
+
         GridDisplay.GridToShow();
         if (testSpawnBlock()) {
             GameOver();
@@ -40,47 +41,72 @@ public class Board{
             GridDisplay.SetColors(Game.ShowTetris);
         }
     }
-    public static void TetrominoJ() {
+    private static void TetrominoJ() {
         Game.MirrorGrid[0][5] = SquareColor.GREEN;
         Game.MirrorGrid[1][5] = SquareColor.GREEN;
         Game.MirrorGrid[2][5] = SquareColor.GREEN;
         Game.MirrorGrid[2][4] = SquareColor.GREEN;
+        Game.Color = SquareColor.GREEN;
+        Game.xPiece = 5;
+        Game.yPiece = 1;
     }
-    public static void TetrominoL() {
+    private static void TetrominoL() {
         Game.MirrorGrid[0][4] = SquareColor.RED;
         Game.MirrorGrid[1][4] = SquareColor.RED;
         Game.MirrorGrid[2][4] = SquareColor.RED;
         Game.MirrorGrid[2][5] = SquareColor.RED;
+        Game.Color = SquareColor.RED;
+        Game.xPiece = 4;
+        Game.yPiece = 1;
     }
-    public static void TetrominoO() {
+    private static void TetrominoO() {
         Game.MirrorGrid[0][5] = SquareColor.PURPLE;
         Game.MirrorGrid[1][5] = SquareColor.PURPLE;
         Game.MirrorGrid[0][4] = SquareColor.PURPLE;
         Game.MirrorGrid[1][4] = SquareColor.PURPLE;
+        Game.Color = SquareColor.PURPLE;
+
+
     }
-    public static void TetrominoI() {
+    private static void TetrominoI() {
         Game.MirrorGrid[0][3] = SquareColor.ORANGE;
         Game.MirrorGrid[0][5] = SquareColor.ORANGE;
         Game.MirrorGrid[0][4] = SquareColor.ORANGE;
         Game.MirrorGrid[0][6] = SquareColor.ORANGE;
+        Game.Color = SquareColor.ORANGE;
+
+        Game.xPiece = 5;
+        Game.yPiece = 0;
     }
-    public static void TetrominoT() {
+    private static void TetrominoT() {
         Game.MirrorGrid[0][5] = SquareColor.YELLOW;
         Game.MirrorGrid[1][6] = SquareColor.YELLOW;
         Game.MirrorGrid[1][5] = SquareColor.YELLOW;
         Game.MirrorGrid[1][4] = SquareColor.YELLOW;
+        Game.Color = SquareColor.YELLOW;
+
+        Game.xPiece = 5;
+        Game.yPiece = 1;
     }
-    public static void TetrominoS() {
+    private static void TetrominoS() {
         Game.MirrorGrid[0][5] = SquareColor.DEEP_BLUE;
         Game.MirrorGrid[0][4] = SquareColor.DEEP_BLUE;
         Game.MirrorGrid[1][5] = SquareColor.DEEP_BLUE;
         Game.MirrorGrid[1][6] = SquareColor.DEEP_BLUE;
+        Game.Color = SquareColor.DEEP_BLUE;
+
+        Game.xPiece = 5;
+        Game.yPiece = 1;
     }
-    public static void TetrominoZ() {
+    private static void TetrominoZ() {
         Game.MirrorGrid[0][5] = SquareColor.LIGHT_BLUE;
         Game.MirrorGrid[0][6] = SquareColor.LIGHT_BLUE;
         Game.MirrorGrid[1][5] = SquareColor.LIGHT_BLUE;
         Game.MirrorGrid[1][4] = SquareColor.LIGHT_BLUE;
+        Game.Color = SquareColor.LIGHT_BLUE;
+
+        Game.xPiece = 5;
+        Game.yPiece = 1;
     }
     // Cette fonction permet de vérifier si la pièce peut être placée
     // Elle retourne un booléen
@@ -125,9 +151,7 @@ public class Board{
         Board.SpawnPiece();
     }
 
-    // Cette fonction permet de vérifier si la pièce peut être placée
-    // Elle retourne un booléen
-    public static bool testSpawnBlock() {
+    private static bool testSpawnBlock() {
         for (int i = 0; i < 22; i++)
         {
             for (int j = 0; j < 10; j++)
@@ -150,15 +174,8 @@ public class Board{
         
     }
 
-    // public static void bestScore(){
-        
-    // }
-    
-    public static void GameOver(){
-        GridDisplay.GridToShow();
-        GridDisplay.SetColors(Game.ShowTetris);
-        Game.score = 0;
-        Clear.clearGrid();
-        SpawnPiece();
+    private static void GameOver(){
+        GridDisplay.TriggerGameOver();
+        Game.Gameover = true;
     }
 }

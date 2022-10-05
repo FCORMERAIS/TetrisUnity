@@ -6,12 +6,11 @@ public class GridDisplay : MonoBehaviour
 {
 
     // Hauteur de la grille en nombre de cases
-    public int height = 22;
-    // public static List<List<SquareColor>> Grid;
+    private int height = 22;
     // Largeur de la grille en nombre de cases
-    public int width = 10;
+    private int width = 10;
     // Cette fonction se lance au lancement du jeu, avant le premier affichage.
-    public static void Initialize(){
+    private static void Initialize(){
         List<List<SquareColor>> board = new List<List<SquareColor>>(); 
         for (int i=0;i<22;i++){
             List<SquareColor> Ligne = new List<SquareColor>();
@@ -30,6 +29,8 @@ public class GridDisplay : MonoBehaviour
         GridDisplay.SetMoveLeftFunction(KeyBoard.MoveLeft);
         GridDisplay.SetMoveRightFunction(KeyBoard.MoveRight);
         GridDisplay.SetRushFunction(KeyBoard.Rush);
+        GridDisplay.SetRotateFunction(KeyBoard.Rotate);
+
     }
     
         // TODO : Complétez cette fonction de manière à appeler le code qui initialise votre jeu.
@@ -45,14 +46,14 @@ public class GridDisplay : MonoBehaviour
     // C'est ici que le gros de la logique temporelle de votre jeu aura lieu!
     // Cette fonction peut être une méthode d'une autre classe
     // et doit renvoyer void, et ne prendre aucun argument.
-    public static void SetTickFunction(TickFunction function){
+    private static void SetTickFunction(TickFunction function){
         _grid.Tick = function;
     }
     // Paramètre la fonction devant être appelée lorsqu'on appuie sur la barre d'espace 
     // pour faire tourner la pièce dans le sens horaire.
     // Cette fonction peut être une méthode d'une autre classe
     // et doit renvoyer void, et ne prendre aucun argument.
-    public static void SetRotateFunction(RotateFunction function){
+    private static void SetRotateFunction(RotateFunction function){
         _grid.Rotate = function;
     }
 
@@ -60,7 +61,7 @@ public class GridDisplay : MonoBehaviour
     // pour bouger la pièce vers la gauche.
     // Cette fonction peut être une méthode d'une autre classe
     // et doit renvoyer void, et ne prendre aucun argument.
-    public static void SetMoveLeftFunction(MoveFunction function){
+    private static void SetMoveLeftFunction(MoveFunction function){
         _grid.MoveLeft = function;
     }
 
@@ -68,29 +69,34 @@ public class GridDisplay : MonoBehaviour
     // pour bouger la pièce vers la droite.
     // Cette fonction peut être une méthode d'une autre classe
     // et doit renvoyer void, et ne prendre aucun argument.
-    public static void SetMoveRightFunction(MoveFunction function){
+    private static void SetMoveRightFunction(MoveFunction function){
         _grid.MoveRight = function;
     }
 
-    public static void lunchtime() {
-        List<SquareColor> Ligne = new List<SquareColor>();
-        for (int i = 21; i > 0; i--)
-        {
-            Game.MirrorGrid[i] = Game.MirrorGrid[i-1];
+    private static void lunchtime() {
+        if (!Game.Gameover) {
+            List<SquareColor> Ligne = new List<SquareColor>();
+            for (int i = 21; i > 0; i--)
+            {
+                Game.MirrorGrid[i] = Game.MirrorGrid[i-1];
+            }
+            for (int j = 0;j<10;j++){
+                SquareColor color = SquareColor.TRANSPARENT;
+                Ligne.Add(color);
+            }
+            Game.MirrorGrid[0] = Ligne;
+            Game.yPiece +=1;
+            if (!Game.Gameover) {
+                GridToShow();
+            }
+            SetColors(Game.ShowTetris);
+            if (Board.isFloorTouch()) {
+                Board.FloorTouch();
+                Clear.ClearLine();
+                Board.IsGameOver();
+            }
+            GridDisplay.SetScore(Game.score);
         }
-        for (int j = 0;j<10;j++){
-            SquareColor color = SquareColor.TRANSPARENT;
-            Ligne.Add(color);
-        }
-        Game.MirrorGrid[0] = Ligne;
-        GridToShow();
-        SetColors(Game.ShowTetris);
-        if (Board.isFloorTouch()) {
-            Board.FloorTouch();
-            Clear.ClearLine();
-            Board.IsGameOver();
-        }
-        GridDisplay.SetScore(Game.score);
     }
 
     public static void GridToShow() {
@@ -111,7 +117,7 @@ public class GridDisplay : MonoBehaviour
     // pour faire descendre la pièce tout en bas.
     // Cette fonction peut être une méthode d'une autre classe
     // et doit renvoyer void, et ne prendre aucun argument.
-    public static void SetRushFunction(RushFunction function){
+    private static void SetRushFunction(RushFunction function){
         _grid.Rush = function;
     }
 
